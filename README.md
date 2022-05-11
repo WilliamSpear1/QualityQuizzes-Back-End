@@ -16,11 +16,11 @@
     Will be hosted on Virtual Server  
     Will be hosted  mapped to a domain  
 ##Abilities
-### TEACHERS
-    - Create Quizzes
-    - Delete Quizzes 
-    - Edit Quizzes
-    - View Quizzes
-### STUDENTS
-    - Take Quizzes
-    - View Grades
+    ### TEACHERS
+        - Create Quizzes
+        - Delete Quizzes 
+        - Edit Quizzes
+        - View Quizzes
+    ### STUDENTS
+        - Take Quizzes
+        - View Grades
