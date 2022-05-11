@@ -1,8 +1,8 @@
 # QualityQuizzes  
-## Contributors 
-    -__William Spearman__  
-    -__Bret Steadman__  
-    -__Damon Akins__  
+## Contributors
+    -William Spearman  
+    -Bret Steadman  
+    -Damon Akins  
 **Application for creating custom or automated quizzes/tests**  
 ## Tech Stack 
     1) Java for Back-end  
@@ -12,6 +12,6 @@
     1.Teachers  
     2.Students  
 ## Future Additions
-    **Will host on Nginx Server**  
-    **Will host on Virtual Server**  
-    **Will be mapped to a domain**  
+    Will host on Nginx Server  
+    Will host on Virtual Server  
+    Will be mapped to a domain  
