@@ -3,7 +3,7 @@
     -William Spearman  
     -Bret Steadman  
     -Damon Akins  
-**Application for creating custom or automated quizzes/tests**  
+# Application for creating custom or automated quizzes/tests  
 ## Tech Stack 
     1) Java for Back-end  
     2) MariaDB for Database  
@@ -15,7 +15,7 @@
     Will be hosted on Nginx Server  
     Will be hosted on Virtual Server  
     Will be hosted  mapped to a domain  
-**Abilities**
+# Abilities
 ### TEACHERS
         - Create Quizzes
         - Delete Quizzes 
