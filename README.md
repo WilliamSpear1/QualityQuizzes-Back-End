@@ -42,4 +42,36 @@
         // methods ///////////////////////////////////////////////////////////////// 
         // helper functions  /////////////////////////////////////////////////////// 
     }
- ``` 
+ ```
+
+### Class Sturcture Example
+```
+    public class Movie{
+        // properties ////////////////////////////////////////////////////////////// 
+        private static final NumberOfMovies++;
+        
+        // constants  ////////////////////////////////////////////////////////////// 
+        private static final Long NumberOfSeats = 24;
+        private static final String MovieThreater = 'AMC';
+        
+        // members  ////////////////////////////////////////////////////////////////
+        private final MovieName Dr.Stange
+        private int             NumberOfPeopleAttending;
+        private int             FoodSold;
+        private int             DrinksSold;
+        
+        // constructors  ////////////////////////////////////////////////////////////// 
+       public Movie(){
+            this(new Movie());
+       }
+    }
+```
+### Rules for using Braces
+#### Optional
+```
+    public boolean thisIsAGreatMovie(response){
+        if( response == null) return false;
+        if( response == movie.isGood()) return true;
+        if( response == movie.isBad()) return false;
+    }
+```
