@@ -15,12 +15,12 @@
     Will be hosted on Nginx Server  
     Will be hosted on Virtual Server  
     Will be hosted  mapped to a domain  
-##Abilities
-    ### TEACHERS
+**Abilities**
+### TEACHERS
         - Create Quizzes
         - Delete Quizzes 
         - Edit Quizzes
         - View Quizzes
-    ### STUDENTS
+### STUDENTS
         - Take Quizzes
         - View Grades
