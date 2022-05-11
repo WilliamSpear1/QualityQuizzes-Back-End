@@ -34,7 +34,7 @@
 # Coding Style Guide
 ### Class Sturcture Template 
  ``` 
-    public class Foo{
+    public class Movie{
         // properties ////////////////////////////////////////////////////////////// 
         // constants /////////////////////////////////////////////////////////////// 
         // members  //////////////////////////////////////////////////////////////// 
@@ -62,9 +62,9 @@
         private int             drinksSold;
         
         // constructors  ////////////////////////////////////////////////////////////// 
-       public Movie(){
+        public Movie(){
             this(new Movie());
-       }
+        }
     }
 ```
 ### Rules for using Braces
