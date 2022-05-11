@@ -61,7 +61,7 @@
         private int             foodSold;
         private int             drinksSold;
         
-        // constructors  ////////////////////////////////////////////////////////////// 
+        // constructors  /////////////////////////////////////////////////////////// 
         public Movie(){
             this(new Movie());
         }
