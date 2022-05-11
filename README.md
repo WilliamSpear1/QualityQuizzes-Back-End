@@ -21,6 +21,7 @@
     * Will be hosted on Nginx Server
     * Will be hosted on Virtual Server
     * Will be hosted mapped to a domain
+    * Maybe implementing a design pattern for cleaner code
 # Abilities
 ### TEACHERS
         - Create Quizzes
@@ -48,17 +49,17 @@
 ```
     public class Movie{
         // properties ////////////////////////////////////////////////////////////// 
-        private static final NumberOfMovies++;
+        private static final numberOfMovies++;
         
         // constants  ////////////////////////////////////////////////////////////// 
-        private static final Long NumberOfSeats = 24;
-        private static final String MovieThreater = 'AMC';
+        private static final Long numberOfSeats = 24;
+        private static final String movieThreater = 'AMC';
         
         // members  ////////////////////////////////////////////////////////////////
-        private final MovieName Dr.Stange
-        private int             NumberOfPeopleAttending;
-        private int             FoodSold;
-        private int             DrinksSold;
+        private final movieName Dr.Stange
+        private int             numberOfPeopleAttending;
+        private int             foodSold;
+        private int             drinksSold;
         
         // constructors  ////////////////////////////////////////////////////////////// 
        public Movie(){
@@ -75,3 +76,5 @@
         if( response == movie.isBad()) return false;
     }
 ```
+### Additional Coding Rules
+    - Camel Case -> Naming Convention 
