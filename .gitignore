@@ -60,8 +60,9 @@ hs_err_pid*
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 # .idea/artifacts
-# .idea/compiler.xml
-# .idea/jarRepositories.xml
+ .idea/compiler.xml
+ .idea/jarRepositories.xml
+ .idea/encoding.xml
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
