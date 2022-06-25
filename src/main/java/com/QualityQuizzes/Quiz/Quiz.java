@@ -26,7 +26,7 @@ public class Quiz {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private String                                 quizName;
     private List<QuizQuestions> quizQuestions;
-    private int                                         quizQuestionAmount;
+    private int                                          quizQuestionAmount;
 
     //Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
     Quiz(
