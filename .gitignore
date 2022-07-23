@@ -63,11 +63,11 @@ hs_err_pid*
  .idea/compiler.xml
  .idea/jarRepositories.xml
  .idea/encoding.xml
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+.idea/modules.xml
+ .idea/*.iml
+ .idea/modules
+ *.iml
+ *.ipr
 
 # CMake
 cmake-build-*/
