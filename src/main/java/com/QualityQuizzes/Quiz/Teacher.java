@@ -21,4 +21,5 @@ public class Teacher extends User {
                 teacherLastName
         );
    }
+   public Boolean getStatus() {return isTeacher;}
 }
