@@ -6,7 +6,7 @@ public class Quiz {
     //  Inner class of QuizQuestions that will populate a Quiz.
     private static class QuizQuestions {
         // Members ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private String questionName;
+       private String questionName;
        private  int    questionNumber;
        private  String questionType;
 
