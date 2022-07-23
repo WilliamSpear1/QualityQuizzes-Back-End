@@ -11,22 +11,26 @@ public class Quiz {
        private String  questionType;
 
        // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////
-        QuizQuestions (String questionName, int questionNumber, String questionType) {
+        QuizQuestions (
+            String questionName,
+            int questionNumber,
+            String questionType
+        ) {
             this.questionName      = questionName;
-            this.questionNumber = questionNumber;
-            this.questionType         = questionType;
+            this.questionNumber    = questionNumber;
+            this.questionType      = questionType;
         }
 
         // Setters and Getters ////////////////////////////////////////////////////////////////////////////////////////
-        public String getQuestionName      () {return  questionName;}
-        public int        getQuestionNumber () {return  questionNumber;}
-        public String getQuestionType         () {return  questionType;}
+        public String getQuestionName   () {return  questionName;}
+        public int    getQuestionNumber () {return  questionNumber;}
+        public String getQuestionType   () {return  questionType;}
     }
 
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private String                                 quizName;
+    private String              quizName;
     private List<QuizQuestions> quizQuestions;
-    private int                                          quizQuestionAmount;
+    private int                 quizQuestionAmount;
 
     //Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
     Quiz(
