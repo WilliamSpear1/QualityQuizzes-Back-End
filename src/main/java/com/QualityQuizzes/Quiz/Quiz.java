@@ -1,14 +1,15 @@
 package com.QualityQuizzes.Quiz;
 
 import java.util.List;
+// TODO: Make class a JPA Entity along with creation of TABLES, COLUMNS, AND MORE.
 
 public class Quiz {
     //  Inner class of QuizQuestions that will populate a Quiz.
     private static class QuizQuestions {
         // Members ////////////////////////////////////////////////////////////////////////////////////////////////////
-       private String questionName;
-       private  int    questionNumber;
-       private  String questionType;
+       final private String  questionName;
+       final private  int    questionNumber;
+       final private  String questionType;
 
        // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////
         QuizQuestions (
@@ -28,9 +29,9 @@ public class Quiz {
     }
 
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private String              quizName;
-    private List<QuizQuestions> quizQuestions;
-    private int                 quizQuestionAmount;
+    final private String              quizName;
+    final private List<QuizQuestions> quizQuestions;
+    final private int                 quizQuestionAmount;
 
     //Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
     Quiz(
