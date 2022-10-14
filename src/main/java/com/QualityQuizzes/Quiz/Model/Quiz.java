@@ -1,14 +1,41 @@
 package com.QualityQuizzes.Quiz.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
-// TODO: Make class a JPA Entity along with creation of TABLES, COLUMNS, AND MORE.
-
+@Entity
+@Table (name = "quiz")
 public class Quiz {
     //  Inner class of QuizQuestions that will populate a Quiz.
     private static class QuizQuestions {
         // Members ////////////////////////////////////////////////////////////////////////////////////////////////////
+        @Id
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quiz_generator")
+        private long id;
+       
+        @Column(
+         name             = "quiz_name",
+         nullable         = false,
+         columnDefinition = "TEXT"
+       )
        final private String  questionName;
+       
+       @Column(
+         name             = "quiz_number",
+         nullable         = false,
+         columnDefinition = "TEXT"
+       )
        final private  int    questionNumber;
+       
+       @Column(
+         name = "quiz_type",
+         nullable = false,
+         columnDefinition = "TEXT"
+       )
        final private  String questionType;
 
        // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////
