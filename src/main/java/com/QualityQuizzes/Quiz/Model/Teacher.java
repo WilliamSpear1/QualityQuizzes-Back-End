@@ -1,26 +1,64 @@
 package com.QualityQuizzes.Quiz.Model;
 
-import com.QualityQuizzes.Quiz.Model.ApplicationUser;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table (name = "teacher")
 public class Teacher extends ApplicationUser {
-    // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    private static final boolean isTeacher = true;
+   // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
+   private static final boolean isTeacher = true;
 
-    // Members /////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private String teacherEmail;
-    private String teacherFirstName;
-    private String teacherLastName;
-    private Long   id;
-    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
+   // Members /////////////////////////////////////////////////////////////////////////////////////////////////////////
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "teacher_generator")
+   private long   id;
+   @Column(
+    name             = "teacher_user_name",
+    nullable         = false,
+    columnDefinition = "TEXT"
+   )
+   private String teacherUserName;
+   
+   @Column(
+    name = "teacher_email",
+    nullable = false,
+    columnDefinition = "TEXT"
+   )
+   private String teacherEmail;
+   
+   @Column(
+    name = "teacher_first_name",
+    nullable = false,
+    columnDefinition = "TEXT"
+   )
+   private String teacherFirstName;
+   
+   @Column(
+    name = "teacher_last_name",
+    nullable = false,
+    columnDefinition = "TEXT"
+   )
+   private String teacherLastName;
+   
+   // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
    Teacher(
            String teacherFirstName,
            String teacherLastName,
+           String teacherUserName,
+           String teacherEmail,
            Long   id
    ) {
         super(
-                teacherFirstName,
-                teacherLastName,
-                id
+            teacherFirstName,
+            teacherLastName,
+            teacherUserName,
+            teacherEmail,
+            id
         );
    }
    public Boolean getStatus() {return isTeacher;}
