@@ -1,25 +1,26 @@
-package com.QualityQuizzes.Quiz;
+package com.QualityQuizzes.Quiz.Model;
 
-// TODO: Make class a JPA Entity along with creation of TABLES, COLUMNS, AND MORE.
-public class Teacher extends User {
+import com.QualityQuizzes.Quiz.Model.ApplicationUser;
+
+public class Teacher extends ApplicationUser {
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final boolean isTeacher = true;
 
     // Members /////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private String teacherUserName;
+    private String teacherEmail;
     private String teacherFirstName;
     private String teacherLastName;
-
+    private Long   id;
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
    Teacher(
-           String teacherUserName,
            String teacherFirstName,
-           String teacherLastName
+           String teacherLastName,
+           Long   id
    ) {
         super(
-                teacherUserName,
                 teacherFirstName,
-                teacherLastName
+                teacherLastName,
+                id
         );
    }
    public Boolean getStatus() {return isTeacher;}

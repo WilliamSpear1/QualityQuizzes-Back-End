@@ -1,4 +1,4 @@
-package com.QualityQuizzes.Quiz;
+package com.QualityQuizzes.Quiz.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity (name = "ApplicationUser")
-@Table (name = "ApplicationUser")
+@Table  (name = "ApplicationUser")
 public class ApplicationUser {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Id

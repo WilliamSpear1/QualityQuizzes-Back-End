@@ -1,4 +1,4 @@
-package com.QualityQuizzes.Quiz;
+package com.QualityQuizzes.Quiz.Model;
 
 import java.util.List;
 // TODO: Make class a JPA Entity along with creation of TABLES, COLUMNS, AND MORE.
