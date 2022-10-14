@@ -5,29 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity (name = "ApplicationUser")
+@Entity
 @Table  (name = "ApplicationUser")
 public class ApplicationUser {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Id
-    @SequenceGenerator(
-      name           = "user_sequence",
-      sequenceName   = "user_sequence"
-    )
-
     @GeneratedValue(
       strategy  = GenerationType.SEQUENCE,
       generator = "user_sequence"
     )
-
-    @Column(
-      name      = "user_id",
-      updatable = false
-    )
-    private Long    id;
+    private long id;
+    
     @Column(
       name             = "email",
       nullable         = false,
@@ -48,28 +38,39 @@ public class ApplicationUser {
     )
     private String  lastName;
     
+    @Column(
+      name             = "username",
+      nullable         = false,
+      columnDefinition = "TEXT"
+    )
+    private String userName;
+    
     // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
     ApplicationUser() {
         firstName = "";
         lastName  = "";
+        userName  = "";
     }
     
     ApplicationUser(
       String  firstName,
       String  lastName,
+      String  userName,
       Long    id
     ) {
         this.firstName = firstName;
         this.lastName  = lastName;
+        this.userName  = userName;
         this.id        = id;
     }
     
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
-    public void setEmailName(String userEmail)  {this.email      = email;}
+    public void setEmailName(String userEmail) {this.email      = email;}
     public void setFirstName(String firstName) {this.firstName  = firstName;}
     public void setLastName(String lastName)   {this.lastName   = lastName;}
-    
+    public void setUserName(String userName)   {this.userName   = userName;}
     public String getEmail()     {return email;}
     public String getFirstName() {return firstName;}
     public String getLastName()  {return lastName;}
+    public String getUserName()  {return userName;}
 }
