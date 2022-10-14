@@ -65,5 +65,6 @@ public class Student extends ApplicationUser {
           id
         );
     }
+    
     public boolean getStatus() {return isTeacher;}
 }
