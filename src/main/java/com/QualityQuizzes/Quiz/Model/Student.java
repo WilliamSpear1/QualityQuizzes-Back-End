@@ -1,7 +1,5 @@
 package com.QualityQuizzes.Quiz.Model;
 
-import com.QualityQuizzes.Quiz.Model.ApplicationUser;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +16,7 @@ public class Student extends ApplicationUser {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
-    private Long   id;
+    private long   id;
     
     @Column(
       name             = "student_user_name",
