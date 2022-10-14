@@ -4,12 +4,12 @@ import com.QualityQuizzes.Quiz.Model.ApplicationUser;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity (name = "Student")
+@Entity
 @Table  (name = "student")
 public class Student extends ApplicationUser {
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,9 +17,7 @@ public class Student extends ApplicationUser {
     
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Id
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
     private Long   id;
     
     @Column(
@@ -43,16 +41,27 @@ public class Student extends ApplicationUser {
     )
     private String studentLastName;
     
+    @Column(
+      name             = "student_email",
+      nullable         = false,
+      columnDefinition = "TEXT"
+    )
+    private String studentEmail;
+    
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Student(){}
     Student(
       String studentFirstName,
       String studentLastName,
+      String studentUserName,
+      String studentEmail,
       Long   id
     ) {
         super(
           studentFirstName,
           studentLastName,
+          studentUserName,
+          studentEmail,
           id
         );
     }

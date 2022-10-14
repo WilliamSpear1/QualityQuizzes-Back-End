@@ -50,17 +50,20 @@ public class ApplicationUser {
         firstName = "";
         lastName  = "";
         userName  = "";
+        email     = "";
     }
     
     ApplicationUser(
       String  firstName,
       String  lastName,
       String  userName,
+      String  email,
       Long    id
     ) {
         this.firstName = firstName;
         this.lastName  = lastName;
         this.userName  = userName;
+        this.email     = email;
         this.id        = id;
     }
     
