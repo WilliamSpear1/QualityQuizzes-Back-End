@@ -46,12 +46,13 @@ public class Teacher extends ApplicationUser {
    private String teacherLastName;
    
    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
-   Teacher(
-           String teacherFirstName,
-           String teacherLastName,
-           String teacherUserName,
-           String teacherEmail,
-           Long   id
+   Teacher() {}
+   public Teacher(
+     String teacherFirstName,
+     String teacherLastName,
+     String teacherUserName,
+     String teacherEmail,
+     Long   id
    ) {
         super(
             teacherFirstName,
@@ -60,6 +61,20 @@ public class Teacher extends ApplicationUser {
             teacherEmail,
             id
         );
+   }
+   
+   public Teacher(
+     String teacherFirstName,
+     String teacherLastName,
+     String teacherUserName,
+     String teacherEmail
+   ) {
+      super(
+        teacherFirstName,
+        teacherLastName,
+        teacherUserName,
+        teacherEmail
+      );
    }
    public Boolean getStatus() {return isTeacher;}
 }
