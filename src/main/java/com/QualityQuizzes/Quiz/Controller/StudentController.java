@@ -59,6 +59,7 @@ public class StudentController {
         
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    
     @DeleteMapping("/students/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") long id, @RequestBody Student student) {
         try {
