@@ -48,7 +48,20 @@ public class Student extends ApplicationUser {
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Student(){}
-    Student(
+    public Student(
+      String studentFirstName,
+      String studentLastName,
+      String studentUserName,
+      String studentEmail
+    ) {
+        super(
+          studentFirstName,
+          studentLastName,
+          studentUserName,
+          studentEmail
+        );
+    }
+    public Student(
       String studentFirstName,
       String studentLastName,
       String studentUserName,
