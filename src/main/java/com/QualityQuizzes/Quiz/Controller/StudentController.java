@@ -20,9 +20,11 @@ import java.util.Optional;
 @RequestMapping("/api")
 
 public class StudentController {
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     StudentRepository studentRepository;
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @PostMapping("/students")
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         try{
