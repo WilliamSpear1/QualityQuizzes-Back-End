@@ -1,48 +1,14 @@
 package com.QualityQuizzes.Quiz.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table  (name = "ApplicationUser")
 public class ApplicationUser {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Id
-    @GeneratedValue(
-      strategy  = GenerationType.SEQUENCE,
-      generator = "user_sequence"
-    )
     private long id;
     
-    @Column(
-      name             = "email",
-      nullable         = false,
-      columnDefinition = "TEXT"
-    )
     private String  email;
     
-    @Column(
-      name             = "first_name",
-      nullable         = false,
-      columnDefinition = "TEXT"
-    )
     private String  firstName;
-    @Column(
-      name             = "last_name",
-      nullable         = false,
-      columnDefinition = "TEXT"
-    )
     private String  lastName;
     
-    @Column(
-      name             = "username",
-      nullable         = false,
-      columnDefinition = "TEXT"
-    )
     private String userName;
     
     // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,6 +19,17 @@ public class ApplicationUser {
         email     = "";
     }
     
+    ApplicationUser(
+      String  firstName,
+      String  lastName,
+      String  userName,
+      String  email
+    ) {
+        this.firstName = firstName;
+        this.lastName  = lastName;
+        this.userName  = userName;
+        this.email     = email;
+    }
     ApplicationUser(
       String  firstName,
       String  lastName,
@@ -76,4 +53,5 @@ public class ApplicationUser {
     public String getFirstName() {return firstName;}
     public String getLastName()  {return lastName;}
     public String getUserName()  {return userName;}
+    public long getId() {return id;}
 }
