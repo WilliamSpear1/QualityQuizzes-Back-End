@@ -60,6 +60,7 @@ public abstract class ApplicationUser {
         this.userName  = userName;
         this.email     = email;
     }
+    
     ApplicationUser(
       String  firstName,
       String  lastName,
@@ -76,12 +77,20 @@ public abstract class ApplicationUser {
     
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
     public void setEmailName(String userEmail) {this.email      = email;}
+    
     public void setFirstName(String firstName) {this.firstName  = firstName;}
+    
     public void setLastName(String lastName)   {this.lastName   = lastName;}
+    
     public void setUserName(String userName)   {this.userName   = userName;}
+    
     public String getEmail()     {return email;}
+    
     public String getFirstName() {return firstName;}
+    
     public String getLastName()  {return lastName;}
+    
     public String getUserName()  {return userName;}
-    public long getId() {return id;}
+    
+    public long getId()          {return id;}
 }
