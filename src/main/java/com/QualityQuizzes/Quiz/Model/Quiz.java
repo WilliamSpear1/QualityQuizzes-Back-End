@@ -16,6 +16,7 @@ import java.util.Set;
 @Entity
 @Table (name = "Quiz")
 public class Quiz {
+        
         @Id
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quiz_generator")
         private long   id;
@@ -24,22 +25,33 @@ public class Quiz {
         @CollectionTable(name = "quiz_questions",joinColumns = @JoinColumn(name = "quiz_id"))
         @Column(name = "quiz_questions")
         Set<QuizQuestion> quizQuestions = new HashSet<>();
+        
         @Column
         String quizName;
+        
         @Column
         int quizSize;
+        
         public Quiz(String quizName) {
                 this.quizSize = 0;
                 this.quizName = quizName;
         }
+        
         public Quiz(String quizName, int quizSize) {
                this.quizSize = quizSize;
                this.quizName = quizName;
         }
         
+        public Quiz(String quizName, int quizSize, Set<QuizQuestion> quizQuestions) {
+                this.quizName      = quizName;
+                this.quizSize      = quizSize;
+                this.quizQuestions = quizQuestions;
+        }
+        
         public Set<QuizQuestion> getQuizQuestions() {
                 return quizQuestions;
         }
+        
         public boolean addQuizQuestion(QuizQuestion quizQuestion) {
                 if (quizQuestions.add(quizQuestion)){
                   quizSize++;
@@ -47,10 +59,14 @@ public class Quiz {
                 }
                 return false;
         }
+        
         public void addQuizQuestions(Set<QuizQuestion> quizQuestions) {
                 quizQuestions.forEach(this::addQuizQuestion);
         }
+        
         public String getQuizName() { return quizName; }
-        public int getQuizSize()  {return quizSize;}
-        public Long getId()  {return id;}
+        
+        public int getQuizSize()    {return quizSize;}
+        
+        public Long getId()         {return id;}
 }
