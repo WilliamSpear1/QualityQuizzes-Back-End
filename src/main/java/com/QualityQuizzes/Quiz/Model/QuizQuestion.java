@@ -1,14 +1,23 @@
 package com.QualityQuizzes.Quiz.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class QuizQuestion {
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Column
     String question;
+    
+    @Column
     String correctAnswer;
+    
+    @Column
     String incorrectAnswer;
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public QuizQuestion(){}
+    
     public QuizQuestion(
       String question,
       String correctAnswer,

@@ -13,6 +13,7 @@ public class Teacher extends ApplicationUser {
    
    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
    Teacher() {}
+   
    public Teacher(
      String firstName,
      String lastName,
@@ -42,5 +43,7 @@ public class Teacher extends ApplicationUser {
         email
       );
    }
+   
+   // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
    public Boolean getStatus() {return isTeacher;}
 }

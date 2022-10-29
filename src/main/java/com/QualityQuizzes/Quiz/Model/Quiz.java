@@ -16,7 +16,7 @@ import java.util.Set;
 @Entity
 @Table (name = "Quiz")
 public class Quiz {
-        
+        // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
         @Id
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quiz_generator")
         private long   id;
@@ -32,6 +32,7 @@ public class Quiz {
         @Column
         int quizSize;
         
+        // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
         public Quiz(String quizName) {
                 this.quizSize = 0;
                 this.quizName = quizName;

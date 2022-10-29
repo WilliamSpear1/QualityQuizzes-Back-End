@@ -13,6 +13,7 @@ public class Student extends ApplicationUser {
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Student(){}
+    
     public Student(
       String studentFirstName,
       String studentLastName,
@@ -42,5 +43,6 @@ public class Student extends ApplicationUser {
         );
     }
     
+    // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
     public boolean getStatus() {return isTeacher;}
 }
