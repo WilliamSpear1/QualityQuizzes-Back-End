@@ -10,12 +10,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 public class TeacherJPADataTests {
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     private TestEntityManager testEntityManager;
     
     @Autowired
     TeacherRepository teacherRepository;
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void should_store_a_teacher() {
         Teacher teacher= new Teacher(

@@ -14,12 +14,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 public class QuizJPADataTests {
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     private TestEntityManager testEntityManager;
     
     @Autowired
     private QuizRepository quizRepository;
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void should_store_a_quiz() {
         Quiz quiz = new Quiz("Quiz1", 0);

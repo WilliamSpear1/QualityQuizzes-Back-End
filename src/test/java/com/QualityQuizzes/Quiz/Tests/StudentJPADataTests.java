@@ -11,12 +11,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 public class StudentJPADataTests {
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     private TestEntityManager testEntityManager;
     
     @Autowired
     StudentRepository studentRepository;
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void should_store_a_student() {
         Student student= new Student(
@@ -103,7 +105,7 @@ public class StudentJPADataTests {
         
         assertThat(noStudents).asList().isEmpty();
     }
-    
+    // TODO: check if this logic makes sense.
     @Test
     public void should_update_student_by_Id() {
         Student student1 = new Student(
