@@ -1,86 +1,56 @@
 package com.QualityQuizzes.Quiz.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table (name = "quiz")
+@Table (name = "Quiz")
 public class Quiz {
-    // TODO: Figure out what to do with this inner class of questions.
-    // TODO: And how it interact as table in the database.
-    
-    //  Inner class of QuizQuestions that will populate a Quiz.
-    private static class QuizQuestions {
-        // Members ////////////////////////////////////////////////////////////////////////////////////////////////////
+        @Id
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quiz_generator")
+        private long   id;
         
-       final private String  questionName;
-       
-       final private  int    questionNumber;
-       
-       final private  String questionType;
-       
-       // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////
-        QuizQuestions (
-            String questionName,
-            int    questionNumber,
-            String questionType
-        ) {
-            this.questionName   = questionName;
-            this.questionNumber = questionNumber;
-            this.questionType   = questionType;
+        @ElementCollection(fetch = FetchType.LAZY)
+        @CollectionTable(name = "quiz_questions",joinColumns = @JoinColumn(name = "quiz_id"))
+        @Column(name = "quiz_questions")
+        Set<QuizQuestion> quizQuestions = new HashSet<>();
+        @Column
+        String quizName;
+        @Column
+        int quizSize;
+        public Quiz(String quizName) {
+                this.quizSize = 0;
+                this.quizName = quizName;
         }
-
-        // Setters and Getters ////////////////////////////////////////////////////////////////////////////////////////
-        public String getQuestionName()   {return  questionName;}
-        public int    getQuestionNumber() {return  questionNumber;}
-        public String getQuestionType()   {return  questionType;}
-    }
-    
-    
-    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quiz_generator")
-    private long id;
-    
-    @ManyToOne (fetch = FetchType.LAZY, optional = false)
-    @JoinColumn (name = "user_id", nullable = false)
-    @OnDelete(action =  OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private ApplicationUser user;
-    @Column(
-      name = "quiz_name",
-      nullable = false,
-      columnDefinition = "TEXT"
-    )
-    final private String              quizName;
-    final private List<QuizQuestions> quizQuestions;
-    @Column(
-      name = "quiz_question_amount",
-      nullable = false,
-      columnDefinition = "TEXT"
-    )
-    final private int                 quizQuestionAmount;
-
-    //Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Quiz(
-            String              quizName,
-            List<QuizQuestions> quizQuestions,
-            int                 quizQuestionAmount,
-            ApplicationUser     user
-    ) {
-        this.quizName           = quizName;
-        this.quizQuestions      = quizQuestions;
-        this.quizQuestionAmount = quizQuestionAmount;
-        this.user               = user;
-    }
+        public Quiz(String quizName, int quizSize) {
+               this.quizSize = quizSize;
+               this.quizName = quizName;
+        }
+        
+        public Set<QuizQuestion> getQuizQuestions() {
+                return quizQuestions;
+        }
+        public boolean addQuizQuestion(QuizQuestion quizQuestion) {
+                if (quizQuestions.add(quizQuestion)){
+                  quizSize++;
+                  return true;
+                }
+                return false;
+        }
+        public void addQuizQuestions(Set<QuizQuestion> quizQuestions) {
+                quizQuestions.forEach(this::addQuizQuestion);
+        }
+        public String getQuizName() { return quizName; }
+        public int getQuizSize()  {return quizSize;}
+        public Long getId()  {return id;}
 }
