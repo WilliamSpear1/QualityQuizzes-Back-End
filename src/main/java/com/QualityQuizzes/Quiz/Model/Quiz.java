@@ -24,7 +24,7 @@ public class Quiz {
         @ElementCollection(fetch = FetchType.LAZY)
         @CollectionTable(name = "quiz_questions",joinColumns = @JoinColumn(name = "quiz_id"))
         @Column(name = "quiz_questions")
-        Set<QuizQuestion> quizQuestions = new HashSet<>();
+        Set<QuizQuestion> quizQuestions = new HashSet<QuizQuestion>();
         
         @Column
         String quizName;
@@ -33,6 +33,8 @@ public class Quiz {
         int quizSize;
         
         // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Quiz () {}
+        
         public Quiz(String quizName) {
                 this.quizSize = 0;
                 this.quizName = quizName;
@@ -52,9 +54,14 @@ public class Quiz {
         public Set<QuizQuestion> getQuizQuestions() {
                 return quizQuestions;
         }
-        
         public boolean addQuizQuestion(QuizQuestion quizQuestion) {
-                if (quizQuestions.add(quizQuestion)){
+                if (quizQuestions.add(
+                  new QuizQuestion(
+                     quizQuestion.getQuestion(),
+                     quizQuestion.getCorrectAnswer(),
+                     quizQuestion.getIncorrectAnswer()
+                  )
+                )){
                   quizSize++;
                   return true;
                 }
@@ -70,4 +77,5 @@ public class Quiz {
         public int getQuizSize()    {return quizSize;}
         
         public Long getId()         {return id;}
+        public void setQuizName(String quizName) { this.quizName = quizName; }
 }
