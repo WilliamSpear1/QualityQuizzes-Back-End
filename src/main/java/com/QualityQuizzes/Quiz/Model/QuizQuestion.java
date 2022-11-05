@@ -27,4 +27,8 @@ public class QuizQuestion {
         this.correctAnswer   = correctAnswer;
         this.incorrectAnswer = incorrectAnswer;
     }
+    
+    public String getQuestion() {return question;}
+    public String getCorrectAnswer() {return correctAnswer;}
+    public String getIncorrectAnswer() {return incorrectAnswer;}
 }
