@@ -1,8 +1,8 @@
 package com.QualityQuizzes.Quiz.Controller;
 
+import com.QualityQuizzes.Quiz.Model.ApplicationUser;
 import com.QualityQuizzes.Quiz.Model.Student;
-import com.QualityQuizzes.Quiz.Repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.QualityQuizzes.Quiz.dao.StudentDAO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -21,14 +23,17 @@ import java.util.Optional;
 
 public class StudentController {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Autowired
-    StudentRepository studentRepository;
+    private final StudentDAO studentDAO;
+    
+    public StudentController(final StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
+    }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @PostMapping("/students")
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         try{
-            final Student _student = studentRepository.save(
+            final Student _student = studentDAO.addUser(
               new Student(
                 student.getFirstName(),
                 student.getLastName(),
@@ -44,20 +49,20 @@ public class StudentController {
     
     @PutMapping("/students/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
-        Optional<Student> studentData = studentRepository.findById(id);
-        
-        if(studentData.isPresent()) {
-            Student _student;
-            
-            _student = studentData.get();
-            
-            _student.setFirstName (student.getFirstName());
-            _student.setLastName  (student.getLastName());
-            _student.setUserName  (student.getUserName());
-            _student.setEmailName (student.getEmail());
-            
-            return new ResponseEntity<>(studentRepository.save(_student), HttpStatus.OK);
-        }
+//        Optional<Student> studentData = (studentData) studentDAO.getById(id);
+//
+//        if(studentData.isPresent()) {
+//            Student _student;
+//
+//            _student = studentData.get();
+//
+//            _student.setFirstName (student.getFirstName());
+//            _student.setLastName  (student.getLastName());
+//            _student.setUserName  (student.getUserName());
+//            _student.setEmailName (student.getEmail());
+//
+//            return new ResponseEntity<>(studentDAO.addUser(_student), HttpStatus.OK);
+//        }
         
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -65,7 +70,7 @@ public class StudentController {
     @DeleteMapping("/students/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") long id) {
         try {
-            studentRepository.deleteById(id);
+            studentDAO.deleteUser(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
