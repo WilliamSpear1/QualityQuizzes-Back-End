@@ -1,20 +1,15 @@
 package com.QualityQuizzes.Quiz.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table (name = "teacher")
 public class Teacher extends ApplicationUser {
    // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
-   @Column
    private static final boolean isTeacher = true;
    
    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
-   Teacher() {}
+   public Teacher () {
+      super();
+   }
    
-   public Teacher(
+   public Teacher (
      String firstName,
      String lastName,
      String userName,
@@ -30,7 +25,7 @@ public class Teacher extends ApplicationUser {
         );
    }
    
-   public Teacher(
+   public Teacher (
      String firstName,
      String lastName,
      String userName,
@@ -45,5 +40,5 @@ public class Teacher extends ApplicationUser {
    }
    
    // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
-   public Boolean getStatus() {return isTeacher;}
+   public boolean getStatus () {return isTeacher;}
 }
