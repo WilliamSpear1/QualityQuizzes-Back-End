@@ -1,7 +1,6 @@
 package com.QualityQuizzes.Quiz.dao;
 
-import com.QualityQuizzes.Quiz.Model.ApplicationUser;
-import com.QualityQuizzes.Quiz.Model.Student;
+import com.QualityQuizzes.Quiz.model.ApplicationUser;
 
 import java.util.List;
 

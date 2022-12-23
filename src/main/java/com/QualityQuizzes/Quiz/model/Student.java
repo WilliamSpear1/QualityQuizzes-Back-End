@@ -1,4 +1,4 @@
-package com.QualityQuizzes.Quiz.Model;
+package com.QualityQuizzes.Quiz.model;
 
 public class Student extends ApplicationUser {
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////

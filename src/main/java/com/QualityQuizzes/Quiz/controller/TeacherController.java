@@ -1,6 +1,6 @@
-package com.QualityQuizzes.Quiz.Controller;
+package com.QualityQuizzes.Quiz.controller;
 
-import com.QualityQuizzes.Quiz.Model.Teacher;
+import com.QualityQuizzes.Quiz.model.Teacher;
 import com.QualityQuizzes.Quiz.dao.TeacherDAO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

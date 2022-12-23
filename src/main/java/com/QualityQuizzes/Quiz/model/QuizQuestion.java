@@ -1,4 +1,4 @@
-package com.QualityQuizzes.Quiz.Model;
+package com.QualityQuizzes.Quiz.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

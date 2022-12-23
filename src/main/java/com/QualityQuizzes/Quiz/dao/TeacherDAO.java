@@ -1,7 +1,7 @@
 package com.QualityQuizzes.Quiz.dao;
 
-import com.QualityQuizzes.Quiz.Model.ApplicationUser;
-import com.QualityQuizzes.Quiz.Model.Teacher;
+import com.QualityQuizzes.Quiz.model.ApplicationUser;
+import com.QualityQuizzes.Quiz.model.Teacher;
 import com.QualityQuizzes.Quiz.mapper.TeacherMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;

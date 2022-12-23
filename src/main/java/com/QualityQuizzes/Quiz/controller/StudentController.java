@@ -1,7 +1,6 @@
-package com.QualityQuizzes.Quiz.Controller;
+package com.QualityQuizzes.Quiz.controller;
 
-import com.QualityQuizzes.Quiz.Model.ApplicationUser;
-import com.QualityQuizzes.Quiz.Model.Student;
+import com.QualityQuizzes.Quiz.model.Student;
 import com.QualityQuizzes.Quiz.dao.StudentDAO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController

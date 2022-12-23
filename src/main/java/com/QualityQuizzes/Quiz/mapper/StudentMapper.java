@@ -1,6 +1,6 @@
 package com.QualityQuizzes.Quiz.mapper;
 
-import com.QualityQuizzes.Quiz.Model.Student;
+import com.QualityQuizzes.Quiz.model.Student;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

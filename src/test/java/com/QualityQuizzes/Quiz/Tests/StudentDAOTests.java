@@ -1,6 +1,6 @@
 package com.QualityQuizzes.Quiz.Tests;
 
-import com.QualityQuizzes.Quiz.Model.Student;
+import com.QualityQuizzes.Quiz.model.Student;
 import com.QualityQuizzes.Quiz.dao.StudentDAO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
