@@ -7,10 +7,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 public class TeacherDAO implements UserDAO<Teacher> {
+    // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
     private final JdbcTemplate jdbcTemplate;
     
+    // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
     public TeacherDAO (final JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public List<Teacher> getAllUsers () {
         String sql = "SELECT id, email, user_name, first_name, last_name FROM TEACHERS";
