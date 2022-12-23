@@ -8,6 +8,7 @@ public class Student extends ApplicationUser {
     public Student () {
         super();
     }
+    
     public Student (
       String studentFirstName,
       String studentLastName,
@@ -21,6 +22,7 @@ public class Student extends ApplicationUser {
           studentEmail
         );
     }
+    
     public Student (
       String firstName,
       String lastName,

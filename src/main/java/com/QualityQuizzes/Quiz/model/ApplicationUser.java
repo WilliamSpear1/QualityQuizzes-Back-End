@@ -20,6 +20,7 @@ public abstract class ApplicationUser {
         this.firstName = "";
         this.lastName  = "";
     }
+    
     ApplicationUser(
       String  firstName,
       String  lastName,

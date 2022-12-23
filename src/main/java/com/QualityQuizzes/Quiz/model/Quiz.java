@@ -62,5 +62,6 @@ public class Quiz {
         public int getQuizSize    () {return quizSize;}
         
         public Long getId         () {return id;}
+        
         public void setQuizName (String quizName) { this.quizName = quizName; }
 }

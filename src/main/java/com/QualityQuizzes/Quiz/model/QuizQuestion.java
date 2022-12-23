@@ -23,6 +23,8 @@ public class QuizQuestion {
     
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
     public String getQuestion        () {return question;}
+    
     public String getCorrectAnswer   () {return correctAnswer;}
+    
     public String getIncorrectAnswer () {return incorrectAnswer;}
 }
