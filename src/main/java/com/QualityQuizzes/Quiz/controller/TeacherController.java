@@ -2,6 +2,8 @@ package com.QualityQuizzes.Quiz.controller;
 
 import com.QualityQuizzes.Quiz.model.Teacher;
 import com.QualityQuizzes.Quiz.dao.TeacherDAO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +24,8 @@ public class TeacherController {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private final TeacherDAO teacherDAO;
     
+    private static final Logger logger = LogManager.getLogger();
+    
     public TeacherController (final TeacherDAO teacherDAO) {
        this.teacherDAO = teacherDAO;
     }
@@ -38,8 +42,10 @@ public class TeacherController {
                 teacher.getEmail()
               )
             );
+            logger.info("Created Teacher with the following id" + _teacher.getId());
             return new ResponseEntity<>(_teacher, HttpStatus.CREATED);
         }catch (Exception e) {
+            logger.error(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -68,8 +74,10 @@ public class TeacherController {
     public ResponseEntity<HttpStatus> deleteTeacher(@PathVariable("id") long id) {
         try {
             teacherDAO.deleteUser(id);
+            logger.info("Deleted Teacher with the following id" + id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
+            logger.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

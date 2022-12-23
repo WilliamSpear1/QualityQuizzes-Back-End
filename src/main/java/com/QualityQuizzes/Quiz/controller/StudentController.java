@@ -2,6 +2,8 @@ package com.QualityQuizzes.Quiz.controller;
 
 import com.QualityQuizzes.Quiz.model.Student;
 import com.QualityQuizzes.Quiz.dao.StudentDAO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class StudentController {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private final StudentDAO studentDAO;
+    private static final Logger logger = LogManager.getLogger();
     
-    public StudentController(final StudentDAO studentDAO) {
-        this.studentDAO = studentDAO;
-    }
+    private final StudentDAO studentDAO;
+   
+    public StudentController (final StudentDAO studentDAO) { this.studentDAO = studentDAO; }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @PostMapping("/students")
@@ -37,8 +39,10 @@ public class StudentController {
                 student.getEmail()
              )
             );
+            logger.info("Created Student with the following id" + _student.getId());
            return new ResponseEntity<>(_student, HttpStatus.CREATED);
         }catch (Exception e) {
+            logger.error(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -67,8 +71,10 @@ public class StudentController {
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") long id) {
         try {
             studentDAO.deleteUser(id);
+            logger.info("Deleted Student with the following id" + id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
+            logger.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
