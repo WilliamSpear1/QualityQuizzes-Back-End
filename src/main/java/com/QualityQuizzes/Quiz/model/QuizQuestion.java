@@ -1,21 +1,14 @@
 package com.QualityQuizzes.Quiz.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-
-@Embeddable
 public class QuizQuestion {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Column
     String question;
     
-    @Column
     String correctAnswer;
     
-    @Column
     String incorrectAnswer;
     
-    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
     public QuizQuestion(){}
     
     public QuizQuestion(
@@ -28,7 +21,8 @@ public class QuizQuestion {
         this.incorrectAnswer = incorrectAnswer;
     }
     
-    public String getQuestion() {return question;}
-    public String getCorrectAnswer() {return correctAnswer;}
-    public String getIncorrectAnswer() {return incorrectAnswer;}
+    // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
+    public String getQuestion        () {return question;}
+    public String getCorrectAnswer   () {return correctAnswer;}
+    public String getIncorrectAnswer () {return incorrectAnswer;}
 }

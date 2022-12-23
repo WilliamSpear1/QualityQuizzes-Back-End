@@ -12,7 +12,7 @@ public abstract class ApplicationUser {
     
     private String email;
     
-    // Methods /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Constructors /////////////////////////////////////////////////////////////////////////////////////////////////////////
     ApplicationUser() {
         this.id        = 0;
         this.email     = "";
@@ -55,7 +55,7 @@ public abstract class ApplicationUser {
     
     public void setUserName  (String userName)  {this.userName   = userName;}
     
-    public void setId        (long Id)          {this.id = id;}
+    public void setId        (long Id)          {this.id         = id;}
     
     public String getEmail     () {return email;}
     

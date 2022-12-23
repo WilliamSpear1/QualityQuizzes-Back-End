@@ -4,7 +4,7 @@ public class Teacher extends ApplicationUser {
    // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
    private static final boolean isTeacher = true;
    
-   // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
+   // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
    public Teacher () {
       super();
    }
@@ -16,13 +16,13 @@ public class Teacher extends ApplicationUser {
      String email,
      Long   id
    ) {
-        super(
-            firstName,
-            lastName,
-            userName,
-            email,
-            id
-        );
+      super(
+        firstName,
+        lastName,
+        userName,
+        email,
+        id
+      );
    }
    
    public Teacher (
