@@ -8,11 +8,11 @@ public interface UserDAO <Users> {
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     List<Users> getAllUsers ();
     
-    ApplicationUser getById (long Id);
+    Users getById (long Id);
     
     Users  addUser (final Users user);
     
-    void updateUser (final Users user);
+    void updateUser (Users user, long Id);
     
     void deleteUser (long Id);
 }

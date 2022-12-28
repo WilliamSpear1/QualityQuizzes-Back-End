@@ -22,7 +22,7 @@ public class TeacherDAO implements UserDAO<Teacher> {
     }
     
     @Override
-    public ApplicationUser getById (long Id) {
+    public Teacher getById (long Id) {
         String sql = "SELECT id, email, user_name, first_name, last_name FROM TEACHERS WHERE id = ?";
         return (Teacher) jdbcTemplate.queryForObject(sql, new TeacherMapper(), Id);
     }
@@ -42,7 +42,7 @@ public class TeacherDAO implements UserDAO<Teacher> {
     }
     
     @Override
-    public void updateUser (final Teacher teacher) {
+    public void updateUser (final Teacher teacher, long Id) {
         String sql = "UPDATE TEACHERS set email = ?, user_name = ?, first_name = ?, last_name = ? where id = ?";
         jdbcTemplate.update(
           sql,
