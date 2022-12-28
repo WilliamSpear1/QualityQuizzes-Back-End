@@ -16,20 +16,20 @@ public class TeacherDAO implements UserDAO<Teacher> {
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public List<Teacher> getAllUsers () {
-        String sql = "SELECT id, email, user_name, first_name, last_name FROM TEACHERS";
+        String sql = "SELECT id, email, userName, firstName, lastName FROM TEACHERS";
         List<Teacher> teachers = jdbcTemplate.query(sql, new TeacherMapper());
         return teachers;
     }
     
     @Override
     public Teacher getById (long Id) {
-        String sql = "SELECT id, email, user_name, first_name, last_name FROM TEACHERS WHERE id = ?";
+        String sql = "SELECT id, email, userName, firstName, lastName FROM TEACHERS WHERE id = ?";
         return (Teacher) jdbcTemplate.queryForObject(sql, new TeacherMapper(), Id);
     }
     
     @Override
     public Teacher addUser (final Teacher teacher) {
-        String sql = "INSERT INTO TEACHERS (id, email, user_name, first_name, last_name) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TEACHERS (id, email, userName, firstName, lastName) values (?, ?, ?, ?, ?)";
         jdbcTemplate.update(
           sql,
           teacher.getId(),
@@ -43,13 +43,14 @@ public class TeacherDAO implements UserDAO<Teacher> {
     
     @Override
     public void updateUser (final Teacher teacher, long Id) {
-        String sql = "UPDATE TEACHERS set email = ?, user_name = ?, first_name = ?, last_name = ? where id = ?";
+        String sql = "UPDATE TEACHERS set email = ?, userName = ?, firstName = ?, lastName = ? where id = ?";
         jdbcTemplate.update(
           sql,
           teacher.getEmail(),
           teacher.getUserName(),
           teacher.getFirstName(),
-          teacher.getLastName()
+          teacher.getLastName(),
+          Id
         );
     }
     
