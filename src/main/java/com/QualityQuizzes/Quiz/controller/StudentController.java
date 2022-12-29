@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
@@ -31,50 +33,40 @@ public class StudentController {
     @PostMapping("/students")
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         try{
-            final Student _student = studentDAO.addUser(
-              new Student(
-                student.getFirstName(),
-                student.getLastName(),
-                student.getUserName(),
-                student.getEmail()
-             )
-            );
-            logger.info("Created Student with the following id" + _student.getId());
-           return new ResponseEntity<>(_student, HttpStatus.CREATED);
+            studentDAO.addUser(student);
+            
+            logger.info("Created Student with the following id" + student.getId());
+           
+            return new ResponseEntity<>(student, HttpStatus.CREATED);
         }catch (Exception e) {
-            logger.error(e.getMessage());
+            
+            logger.error("Exception was thrown here is the error message: " + e.getMessage());
+            
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @PutMapping("/students/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
-//        Optional<Student> studentData = (studentData) studentDAO.getById(id);
-//
-//        if(studentData.isPresent()) {
-//            Student _student;
-//
-//            _student = studentData.get();
-//
-//            _student.setFirstName (student.getFirstName());
-//            _student.setLastName  (student.getLastName());
-//            _student.setUserName  (student.getUserName());
-//            _student.setEmailName (student.getEmail());
-//
-//            return new ResponseEntity<>(studentDAO.addUser(_student), HttpStatus.OK);
-//        }
-        
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try{
+            studentDAO.updateUser(student, id);
+            logger.info("Updated Student with the following id: " + student.getId());
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
     
     @DeleteMapping("/students/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") long id) {
         try {
             studentDAO.deleteUser(id);
-            logger.info("Deleted Student with the following id" + id);
+            
+            logger.info("Deleted Student with the following id: " + id);
+            
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("Exception is thrown: " + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
