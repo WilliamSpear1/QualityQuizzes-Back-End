@@ -1,4 +1,4 @@
-package com.QualityQuizzes.Quiz;
+package com.QualityQuizzes.Quiz.controller;
 
 import com.QualityQuizzes.Quiz.controller.StudentController;
 import com.QualityQuizzes.Quiz.dao.StudentDAO;

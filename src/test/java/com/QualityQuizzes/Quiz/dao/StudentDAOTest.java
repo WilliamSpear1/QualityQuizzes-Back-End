@@ -1,4 +1,4 @@
-package com.QualityQuizzes.Quiz;
+package com.QualityQuizzes.Quiz.dao;
 
 import com.QualityQuizzes.Quiz.dao.StudentDAO;
 import com.QualityQuizzes.Quiz.model.Student;
