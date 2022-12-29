@@ -24,9 +24,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(StudentController.class)
 public class StudentControllerTest {
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
-    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     private MockMvc mockMvc;
     
