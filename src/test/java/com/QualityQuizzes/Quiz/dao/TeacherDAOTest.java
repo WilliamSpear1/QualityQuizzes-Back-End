@@ -1,6 +1,5 @@
 package com.QualityQuizzes.Quiz.dao;
 
-import com.QualityQuizzes.Quiz.dao.TeacherDAO;
 import com.QualityQuizzes.Quiz.model.Teacher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,18 +14,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DataJdbcTest
 public class TeacherDAOTest {
-    
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
     private final JdbcTemplate jdbcTemplate;
+    
     private final TeacherDAO teacherDAO;
     
+    // Constructors /////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     public TeacherDAOTest (JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.teacherDAO   = new TeacherDAO(jdbcTemplate);
     }
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void GET_ALL_TEACHERS(){
         List<Teacher> teacherList = teacherDAO.getAllUsers();

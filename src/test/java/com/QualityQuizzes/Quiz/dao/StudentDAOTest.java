@@ -1,6 +1,5 @@
 package com.QualityQuizzes.Quiz.dao;
 
-import com.QualityQuizzes.Quiz.dao.StudentDAO;
 import com.QualityQuizzes.Quiz.model.Student;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,22 +14,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DataJdbcTest
 public class StudentDAOTest {
-    
+    // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
     private final JdbcTemplate jdbcTemplate;
+    
     private final StudentDAO studentDAO;
     
+    // Constructors /////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     public StudentDAOTest (JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.studentDAO   = new StudentDAO(jdbcTemplate);
     }
-   
+    
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void GET_ALL_STUDENTS(){
         List<Student> studentList = studentDAO.getAllUsers();
-    
+        
         final Student student = studentDAO.getById(2L);
         
         assertFalse(studentList.isEmpty());
@@ -48,7 +50,7 @@ public class StudentDAOTest {
           "spear1",
           "spear1@email.com",
           1L);
-
+        
         logger.info("Here Creating tests.");
         studentDAO.addUser(student);
         
@@ -63,13 +65,13 @@ public class StudentDAOTest {
     @Test
     public void QUERY_FOR_STUDENT_ALREADY_CREATED_IN_DB(){
         final Student newStudent = studentDAO.getById(2L);
-    
+        
         assertThat(newStudent).hasFieldOrPropertyWithValue("firstName", "Bret");
         assertThat(newStudent).hasFieldOrPropertyWithValue("lastName",  "Steadman");
         assertThat(newStudent).hasFieldOrPropertyWithValue("userName",  "steadman1");
         assertThat(newStudent).hasFieldOrPropertyWithValue("email",     "steadman1@email.com");
     }
-   
+    
     @Test
     public void UPDATE_STUDENT() {
         final Student foundStudent = studentDAO.getById(2L);
@@ -87,15 +89,15 @@ public class StudentDAOTest {
         );
         
         studentDAO.updateUser(updateStudent, 2L);
-    
+        
         final Student newStudent = studentDAO.getById(2L);
-    
+        
         assertThat(newStudent).hasFieldOrPropertyWithValue("firstName", "Damon");
         assertThat(newStudent).hasFieldOrPropertyWithValue("lastName",  "Atkins");
         assertThat(newStudent).hasFieldOrPropertyWithValue("userName",  "atkins1");
         assertThat(newStudent).hasFieldOrPropertyWithValue("email",     "atkins1@email.com");
     }
-   
+    
     @Test
     public void DELETE_STUDENT() {
         final Student foundStudent = studentDAO.getById(2L);
