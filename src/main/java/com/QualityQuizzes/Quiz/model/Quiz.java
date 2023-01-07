@@ -7,14 +7,14 @@ public class Quiz {
         // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
         private long   id;
         
-        Set<QuizQuestion> quizQuestions = new HashSet<QuizQuestion>();
+        private Set<QuizQuestion> quizQuestions = new HashSet<QuizQuestion>();
         
-        String quizName;
+        private String quizName;
         
-        int quizSize;
+        private int quizSize;
         
         // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
-        Quiz () {}
+        public Quiz() {}
         
         public Quiz(String quizName) {
                 this.quizSize = 0;
@@ -64,4 +64,6 @@ public class Quiz {
         public Long getId         () {return id;}
         
         public void setQuizName (String quizName) { this.quizName = quizName; }
+        public void setQuizSize (int quizSize) { this.quizSize = quizSize; }
+        public void setId (long id) {this.id = id; }
 }

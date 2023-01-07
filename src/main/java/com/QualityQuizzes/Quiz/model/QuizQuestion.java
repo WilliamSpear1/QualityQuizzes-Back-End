@@ -2,11 +2,13 @@ package com.QualityQuizzes.Quiz.model;
 
 public class QuizQuestion {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    String question;
+    private String question;
     
-    String correctAnswer;
+    private String correctAnswer;
     
-    String incorrectAnswer;
+    private String incorrectAnswer;
+    
+    private long id;
     
     // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
     public QuizQuestion(){}
@@ -27,4 +29,12 @@ public class QuizQuestion {
     public String getCorrectAnswer   () {return correctAnswer;}
     
     public String getIncorrectAnswer () {return incorrectAnswer;}
+    
+    public void setQuestion (String question) {this.question = question;}
+    
+    public void setCorrectAnswer(String correctAnswer) {this.correctAnswer = correctAnswer;}
+    
+    public void setIncorrectAnswer(String incorrectAnswer) {this.incorrectAnswer = incorrectAnswer;}
+    
+    public void setId(long id) {this.id = id;}
 }
