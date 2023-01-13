@@ -11,10 +11,10 @@ public class QuizMapper implements RowMapper<Quiz> {
     @Override
     public Quiz mapRow(ResultSet rs, int rowNum) throws SQLException {
         Quiz quiz = new Quiz();
-        
-        quiz.setQuizName (rs.getString("quizName"));
-        quiz.setQuizSize (rs.getInt("quizSize"));
-        quiz.setId       (rs.getLong("id"));
+    
+        quiz.setId       (rs.getLong("QUIZID"));
+        quiz.setQuizName (rs.getString("QUIZNAME"));
+        quiz.setQuizSize (rs.getInt("QUIZSIZE"));
         
         return quiz;
     }
