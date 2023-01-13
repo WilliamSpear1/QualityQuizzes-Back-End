@@ -2,14 +2,12 @@ package com.QualityQuizzes.Quiz.dao;
 
 import com.QualityQuizzes.Quiz.model.Quiz;
 
-import java.util.List;
-
 public interface QuizDAO {
- List<Quiz> getAllQuizQuestions ();
+ Quiz getQuizById (final long id);
  
  Quiz addQuiz (final Quiz quiz);
  
- void updateQuiz (Quiz quiz, long Id);
+ void updateQuiz (final Quiz quiz);
  
- void deleteQuiz (long Id);
+ void deleteQuiz (final long Id);
 }

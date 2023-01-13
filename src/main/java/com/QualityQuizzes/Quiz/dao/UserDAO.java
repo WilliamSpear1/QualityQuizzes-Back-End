@@ -6,11 +6,11 @@ public interface UserDAO <Users> {
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     List<Users> getAllUsers ();
     
-    Users getById (long Id);
+    Users getById (final long Id);
     
     Users  addUser (final Users user);
     
-    void updateUser (Users user, long Id);
+    void updateUser (final Users user, final long id);
     
     void deleteUser (long Id);
 }
