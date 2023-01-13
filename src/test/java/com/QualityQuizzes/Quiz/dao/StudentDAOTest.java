@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -52,14 +54,19 @@ public class StudentDAOTest {
           1L);
         
         logger.info("Here Creating tests.");
-        studentDAO.addUser(student);
+        final Student checkStudent = studentDAO.addUser(student);
+        
+        System.out.println("checkStudent Id: " + checkStudent.getId());
         
         final Student newStudent = studentDAO.getById(1L);
-        
+    
+        System.out.println(newStudent.getId());
+       
         assertThat(newStudent).hasFieldOrPropertyWithValue("firstName", "William");
         assertThat(newStudent).hasFieldOrPropertyWithValue("lastName",  "Spearman");
         assertThat(newStudent).hasFieldOrPropertyWithValue("userName",  "spear1");
         assertThat(newStudent).hasFieldOrPropertyWithValue("email",     "spear1@email.com");
+        assertThat(newStudent).hasFieldOrPropertyWithValue("id",        1L);
     }
     
     @Test
@@ -74,12 +81,23 @@ public class StudentDAOTest {
     
     @Test
     public void UPDATE_STUDENT() {
-        final Student foundStudent = studentDAO.getById(2L);
+        final Student student = new Student(
+            "Will",
+            "Spearman",
+            "hatter1",
+            "hatter1@email.com",
+            8L
+        );
         
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("firstName", "Bret");
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("lastName",  "Steadman");
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("userName",  "steadman1");
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("email",     "steadman1@email.com");
+        studentDAO.addUser(student);
+        
+        final Student foundStudent = studentDAO.getById(8L);
+        
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("firstName", "Will");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("lastName",  "Spearman");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("userName",  "hatter1");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("email",     "hatter1@email.com");
+//        assertThat(foundStudent).hasFieldOrPropertyWithValue("id",        8L);
         
         final Student updateStudent = new Student(
           "Damon",
@@ -87,15 +105,16 @@ public class StudentDAOTest {
           "atkins1",
           "atkins1@email.com"
         );
+       // TODO: Fix DAO's so that Id's get set properly.
+        studentDAO.updateUser(updateStudent, foundStudent.getId());
         
-        studentDAO.updateUser(updateStudent, 2L);
-        
-        final Student newStudent = studentDAO.getById(2L);
+        final Student newStudent = studentDAO.getById(8L);
         
         assertThat(newStudent).hasFieldOrPropertyWithValue("firstName", "Damon");
         assertThat(newStudent).hasFieldOrPropertyWithValue("lastName",  "Atkins");
         assertThat(newStudent).hasFieldOrPropertyWithValue("userName",  "atkins1");
         assertThat(newStudent).hasFieldOrPropertyWithValue("email",     "atkins1@email.com");
+        assertThat(newStudent).hasFieldOrPropertyWithValue("id",        8L);
     }
     
     @Test

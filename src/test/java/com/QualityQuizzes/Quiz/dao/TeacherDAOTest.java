@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -60,6 +62,7 @@ public class TeacherDAOTest {
         assertThat(newTeacher).hasFieldOrPropertyWithValue("lastName",  "Spearman");
         assertThat(newTeacher).hasFieldOrPropertyWithValue("userName",  "spear1");
         assertThat(newTeacher).hasFieldOrPropertyWithValue("email",     "spear1@email.com");
+        assertThat(newTeacher).hasFieldOrPropertyWithValue("id",        1L);
     }
     
     @Test
@@ -74,12 +77,22 @@ public class TeacherDAOTest {
     
     @Test
     public void UPDATE_TEACHER() {
-        final Teacher foundTeacher = teacherDAO.getById(2L);
+        final Teacher teacher = new Teacher(
+            "Will",
+            "Spearman",
+            "hatter1",
+            "hatter1@email.com",
+            8L
+        );
+    
+        teacherDAO.addUser(teacher);
+        final Teacher foundTeacher = teacherDAO.getById(8L);
         
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("firstName", "Bret");
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("lastName",  "Steadman");
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("userName",  "steadman1");
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("email",     "steadman1@email.com");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("firstName", "Will");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("lastName",  "Spearman");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("userName",  "hatter1");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("email",     "hatter1@email.com");
+//        assertThat(foundTeacher).hasFieldOrPropertyWithValue("id",        8L);
         
         final Teacher updateTeacher = new Teacher(
           "Damon",
@@ -87,10 +100,11 @@ public class TeacherDAOTest {
           "atkins1",
           "atkins1@email.com"
         );
+    
+        // TODO: Fix DAO's so that Id's get set properly.
+        teacherDAO.updateUser(updateTeacher, foundTeacher.getId());
         
-        teacherDAO.updateUser(updateTeacher, 2L);
-        
-        final Teacher newTeacher = teacherDAO.getById(2L);
+        final Teacher newTeacher = teacherDAO.getById(8L);
         
         assertThat(newTeacher).hasFieldOrPropertyWithValue("firstName", "Damon");
         assertThat(newTeacher).hasFieldOrPropertyWithValue("lastName",  "Atkins");
