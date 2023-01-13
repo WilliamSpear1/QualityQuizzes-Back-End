@@ -16,17 +16,25 @@ public class Quiz {
         // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
         public Quiz() {}
         
-        public Quiz(String quizName) {
-                this.quizSize = 0;
-                this.quizName = quizName;
-        }
-        
         public Quiz(String quizName, int quizSize) {
                 this.quizSize = quizSize;
                 this.quizName = quizName;
         }
         
+        public Quiz(long id, String quizName, int quizSize) {
+                this.id       = id;
+                this.quizSize = quizSize;
+                this.quizName = quizName;
+        }
+        
         public Quiz(String quizName, int quizSize, Set<QuizQuestion> quizQuestions) {
+                this.quizName      = quizName;
+                this.quizSize      = quizSize;
+                this.quizQuestions = quizQuestions;
+        }
+        
+        public Quiz(long id, String quizName, int quizSize, Set<QuizQuestion> quizQuestions) {
+                this.id            = id;
                 this.quizName      = quizName;
                 this.quizSize      = quizSize;
                 this.quizQuestions = quizQuestions;
