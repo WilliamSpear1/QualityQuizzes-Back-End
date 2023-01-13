@@ -1,9 +1,9 @@
 package com.QualityQuizzes.Quiz.dao;
 
-import com.QualityQuizzes.Quiz.model.ApplicationUser;
-import com.QualityQuizzes.Quiz.model.Teacher;
 import com.QualityQuizzes.Quiz.mapper.TeacherMapper;
+import com.QualityQuizzes.Quiz.model.Teacher;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.List;
 
 public class TeacherDAO implements UserDAO<Teacher> {
@@ -16,47 +16,65 @@ public class TeacherDAO implements UserDAO<Teacher> {
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public List<Teacher> getAllUsers () {
-        String sql = "SELECT id, email, userName, firstName, lastName FROM TEACHERS";
+        String sql =
+            "SELECT TEACHERID, EMAIL, USERNAME, FIRSTNAME, LASTNAME " +
+            "FROM TEACHERS                                          ";
+        
         List<Teacher> teachers = jdbcTemplate.query(sql, new TeacherMapper());
         return teachers;
     }
     
     @Override
-    public Teacher getById (long Id) {
-        String sql = "SELECT id, email, userName, firstName, lastName FROM TEACHERS WHERE id = ?";
-        return (Teacher) jdbcTemplate.queryForObject(sql, new TeacherMapper(), Id);
+    public Teacher getById (final long Id) {
+        String sql =
+            "SELECT TEACHERID, EMAIL, USERNAME, FIRSTNAME, LASTNAME " +
+            "FROM TEACHERS                                          " +
+            "WHERE TEACHERID = ?                                    ";
+        
+        return jdbcTemplate.queryForObject(sql, new TeacherMapper(), Id);
     }
     
     @Override
     public Teacher addUser (final Teacher teacher) {
-        String sql = "INSERT INTO TEACHERS (id, email, userName, firstName, lastName) values (?, ?, ?, ?, ?)";
+        String sql =
+            "INSERT INTO TEACHERS                              " +
+            "(FIRSTNAME, LASTNAME, USERNAME, EMAIL, TEACHERID) " +
+            "VALUES (?, ?, ?, ?, ?)                            ";
         jdbcTemplate.update(
-          sql,
-          teacher.getId(),
-          teacher.getEmail(),
-          teacher.getUserName(),
-          teacher.getFirstName(),
-          teacher.getLastName()
+            sql,
+            teacher.getFirstName(),
+            teacher.getLastName(),
+            teacher.getUserName(),
+            teacher.getEmail(),
+            teacher.getId()
         );
         return teacher;
     }
     
     @Override
-    public void updateUser (final Teacher teacher, long Id) {
-        String sql = "UPDATE TEACHERS set email = ?, userName = ?, firstName = ?, lastName = ? where id = ?";
+    public void updateUser (final Teacher teacher, final long id ) {
+        String sql =
+            "UPDATE TEACHERS SET                                  " +
+            "FIRSTNAME = ?, LASTNAME = ?, USERNAME = ?, EMAIL = ? " +
+            "WHERE TEACHERID = ?                                  ";
+    
         jdbcTemplate.update(
-          sql,
-          teacher.getEmail(),
-          teacher.getUserName(),
-          teacher.getFirstName(),
-          teacher.getLastName(),
-          Id
+            sql,
+            teacher.getFirstName(),
+            teacher.getLastName(),
+            teacher.getUserName(),
+            teacher.getEmail(),
+            id
         );
     }
     
     @Override
     public void deleteUser (long Id) {
-        String sql = "DELETE FROM TEACHERS WHERE ID = ?";
+        String sql =
+            "DELETE FROM        " +
+            "TEACHERS           " +
+            "WHERE TEACHERID = ?";
+        
         jdbcTemplate.update(sql, Id);
     }
 }
