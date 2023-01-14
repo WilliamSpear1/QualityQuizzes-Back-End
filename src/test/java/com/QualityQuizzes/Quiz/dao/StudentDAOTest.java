@@ -81,23 +81,13 @@ public class StudentDAOTest {
     
     @Test
     public void UPDATE_STUDENT() {
-        final Student student = new Student(
-            "Will",
-            "Spearman",
-            "hatter1",
-            "hatter1@email.com",
-            8L
-        );
+        final Student foundStudent = studentDAO.getById(2L);
         
-        studentDAO.addUser(student);
-        
-        final Student foundStudent = studentDAO.getById(8L);
-        
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("firstName", "Will");
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("lastName",  "Spearman");
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("userName",  "hatter1");
-        assertThat(foundStudent).hasFieldOrPropertyWithValue("email",     "hatter1@email.com");
-//        assertThat(foundStudent).hasFieldOrPropertyWithValue("id",        8L);
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("firstName", "Bret");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("lastName",  "Steadman");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("userName",  "steadman1");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("email",     "steadman1@email.com");
+        assertThat(foundStudent).hasFieldOrPropertyWithValue("id",        2L);
         
         final Student updateStudent = new Student(
           "Damon",
@@ -105,16 +95,16 @@ public class StudentDAOTest {
           "atkins1",
           "atkins1@email.com"
         );
-       // TODO: Fix DAO's so that Id's get set properly.
+        
         studentDAO.updateUser(updateStudent, foundStudent.getId());
         
-        final Student newStudent = studentDAO.getById(8L);
+        final Student newStudent = studentDAO.getById(2L);
         
         assertThat(newStudent).hasFieldOrPropertyWithValue("firstName", "Damon");
         assertThat(newStudent).hasFieldOrPropertyWithValue("lastName",  "Atkins");
         assertThat(newStudent).hasFieldOrPropertyWithValue("userName",  "atkins1");
         assertThat(newStudent).hasFieldOrPropertyWithValue("email",     "atkins1@email.com");
-        assertThat(newStudent).hasFieldOrPropertyWithValue("id",        8L);
+        assertThat(newStudent).hasFieldOrPropertyWithValue("id",        2L);
     }
     
     @Test

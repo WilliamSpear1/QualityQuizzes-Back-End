@@ -77,22 +77,13 @@ public class TeacherDAOTest {
     
     @Test
     public void UPDATE_TEACHER() {
-        final Teacher teacher = new Teacher(
-            "Will",
-            "Spearman",
-            "hatter1",
-            "hatter1@email.com",
-            8L
-        );
+        final Teacher foundTeacher = teacherDAO.getById(2L);
     
-        teacherDAO.addUser(teacher);
-        final Teacher foundTeacher = teacherDAO.getById(8L);
-        
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("firstName", "Will");
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("lastName",  "Spearman");
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("userName",  "hatter1");
-        assertThat(foundTeacher).hasFieldOrPropertyWithValue("email",     "hatter1@email.com");
-//        assertThat(foundTeacher).hasFieldOrPropertyWithValue("id",        8L);
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("firstName", "Bret");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("lastName",  "Steadman");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("userName",  "steadman1");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("email",     "steadman1@email.com");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("id",        2L);
         
         final Teacher updateTeacher = new Teacher(
           "Damon",
@@ -101,15 +92,15 @@ public class TeacherDAOTest {
           "atkins1@email.com"
         );
     
-        // TODO: Fix DAO's so that Id's get set properly.
         teacherDAO.updateUser(updateTeacher, foundTeacher.getId());
         
-        final Teacher newTeacher = teacherDAO.getById(8L);
+        final Teacher newTeacher = teacherDAO.getById(2L);
         
         assertThat(newTeacher).hasFieldOrPropertyWithValue("firstName", "Damon");
         assertThat(newTeacher).hasFieldOrPropertyWithValue("lastName",  "Atkins");
         assertThat(newTeacher).hasFieldOrPropertyWithValue("userName",  "atkins1");
         assertThat(newTeacher).hasFieldOrPropertyWithValue("email",     "atkins1@email.com");
+        assertThat(foundTeacher).hasFieldOrPropertyWithValue("id",       2L);
     }
     
     @Test
