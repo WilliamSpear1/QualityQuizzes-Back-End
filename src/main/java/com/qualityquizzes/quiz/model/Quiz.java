@@ -1,13 +1,14 @@
 package com.qualityquizzes.quiz.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Quiz {
         // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
         private long   id;
         
-        private Set<QuizQuestion> quizQuestions = new HashSet<QuizQuestion>();
+        private List<QuizQuestion> quizQuestions = new ArrayList<QuizQuestion>();
         
         private String quizName;
         
@@ -27,13 +28,13 @@ public class Quiz {
                 this.quizName = quizName;
         }
         
-        public Quiz(String quizName, int quizSize, Set<QuizQuestion> quizQuestions) {
+        public Quiz(String quizName, int quizSize, List<QuizQuestion> quizQuestions) {
                 this.quizName      = quizName;
                 this.quizSize      = quizSize;
                 this.quizQuestions = quizQuestions;
         }
         
-        public Quiz(long id, String quizName, int quizSize, Set<QuizQuestion> quizQuestions) {
+        public Quiz(long id, String quizName, int quizSize, List<QuizQuestion> quizQuestions) {
                 this.id            = id;
                 this.quizName      = quizName;
                 this.quizSize      = quizSize;
@@ -43,21 +44,21 @@ public class Quiz {
         
         // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void addQuizQuestion(final QuizQuestion quizQuestion) {
-                if (quizQuestions.add(
-                  new QuizQuestion(
-                    quizQuestion.getQuestion(),
-                    quizQuestion.getCorrectAnswer(),
-                    quizQuestion.getIncorrectAnswer()
-                  )
-                )){
-                        quizSize++;
-                }
+                quizQuestions.add(
+                    new QuizQuestion(
+                        quizQuestion.getQuestion(),
+                        quizQuestion.getCorrectAnswer(),
+                        quizQuestion.getIncorrectAnswer(),
+                        quizQuestion.getQuizId()
+                    )
+                );
+                quizSize++;
         }
         
         public void addQuizQuestions(Set<QuizQuestion> quizQuestions) { quizQuestions.forEach(this::addQuizQuestion); }
         
         // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
-        public Set<QuizQuestion> getQuizQuestions() {
+        public List<QuizQuestion> getQuizQuestions() {
                 return quizQuestions;
         }
         
