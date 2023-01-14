@@ -2,20 +2,24 @@ package com.QualityQuizzes.Quiz.dao;
 
 import com.QualityQuizzes.Quiz.mapper.StudentMapper;
 import com.QualityQuizzes.Quiz.model.Student;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
 public class StudentDAO implements UserDAO<Student> {
-    
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    private static final Logger logger = LogManager.getLogger();
+    
+    // Members /////////////////////////////////////////////////////////////////////////////////////////////////////////
     private final JdbcTemplate jdbcTemplate;
     
     
     // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public StudentDAO (final JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    public StudentDAO (final JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
@@ -23,9 +27,15 @@ public class StudentDAO implements UserDAO<Student> {
         String sql =
             "SELECT STUDENTID, EMAIL, USERNAME, FIRSTNAME, LASTNAME " +
             "FROM STUDENTS                                          ";
-        
-        List<Student> students = jdbcTemplate.query(sql, new StudentMapper());
-        return students;
+        try {
+            return jdbcTemplate.query(sql, new StudentMapper());
+        } catch (EmptyResultDataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Students getAllUsers method " +
+                "Here is the exception:                                " +
+                exception);
+            return null;
+        }
     }
     
     @Override
@@ -35,7 +45,13 @@ public class StudentDAO implements UserDAO<Student> {
             "FROM STUDENTS                                          " +
             "WHERE STUDENTID = ?                                    ";
         
-        return jdbcTemplate.queryForObject(sql, new StudentMapper(), Id);
+        try {
+            return jdbcTemplate.queryForObject(sql, new StudentMapper(), Id);
+        }catch (EmptyResultDataAccessException exception) {
+          logger.error("Could not get Student object with ID: " + Id);
+          logger.error(exception.toString());
+          return null;
+        }
     }
     
     @Override
@@ -45,15 +61,22 @@ public class StudentDAO implements UserDAO<Student> {
             "(FIRSTNAME, LASTNAME, USERNAME, EMAIL, STUDENTID) " +
             "values (?, ?, ?, ?, ?)                            ";
     
-        jdbcTemplate.update(
-            sql,
-            student.getFirstName(),
-            student.getLastName(),
-            student.getUserName(),
-            student.getEmail(),
-            student.getId());
-    
-        return student;
+        try {
+             jdbcTemplate.update(
+                sql,
+                student.getFirstName(),
+                student.getLastName(),
+                student.getUserName(),
+                student.getEmail(),
+                student.getId());
+             return student;
+        } catch (DataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Students addUser method " +
+                "Here is the exception:                             " +
+                exception);
+            return null;
+        }
     }
     
     @Override
@@ -62,15 +85,21 @@ public class StudentDAO implements UserDAO<Student> {
             "UPDATE STUDENTS SET                                   " +
             "FIRSTNAME = ?, LASTNAME = ?, USERNAME = ?, EMAIL = ?  " +
             "WHERE STUDENTID = ?                                   ";
-    
-        jdbcTemplate.update(
-            sql,
-            student.getFirstName(),
-            student.getLastName(),
-            student.getUserName(),
-            student.getEmail(),
-            id
-        );
+        
+        try {
+            jdbcTemplate.update(
+                sql,
+                student.getFirstName(),
+                student.getLastName(),
+                student.getUserName(),
+                student.getEmail(),
+                id);
+        } catch (DataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Students updateUser method " +
+                "Here is the exception:                                " +
+                exception);
+        }
     }
     
     @Override
@@ -79,6 +108,13 @@ public class StudentDAO implements UserDAO<Student> {
             "DELETE FROM STUDENTS " +
             "WHERE STUDENTID = ?  ";
         
-        jdbcTemplate.update(sql, Id);
+        try {
+            jdbcTemplate.update(sql, Id);
+        } catch (DataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Students deleteUser method " +
+                "Here is the exception:                                " +
+                exception);
+        }
     }
 }

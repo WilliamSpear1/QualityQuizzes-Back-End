@@ -2,12 +2,19 @@ package com.QualityQuizzes.Quiz.dao;
 
 import com.QualityQuizzes.Quiz.mapper.TeacherMapper;
 import com.QualityQuizzes.Quiz.model.Teacher;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
 public class TeacherDAO implements UserDAO<Teacher> {
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    private static final Logger logger = LogManager.getLogger();
+    
+    // Members /////////////////////////////////////////////////////////////////////////////////////////////////////////
     private final JdbcTemplate jdbcTemplate;
     
     // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,9 +26,15 @@ public class TeacherDAO implements UserDAO<Teacher> {
         String sql =
             "SELECT TEACHERID, EMAIL, USERNAME, FIRSTNAME, LASTNAME " +
             "FROM TEACHERS                                          ";
-        
-        List<Teacher> teachers = jdbcTemplate.query(sql, new TeacherMapper());
-        return teachers;
+        try {
+            return jdbcTemplate.query(sql, new TeacherMapper());
+        } catch (EmptyResultDataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Teachers getAllUsers method " +
+                "Here is the exception:                                " +
+                exception);
+            return null;
+        }
     }
     
     @Override
@@ -30,8 +43,14 @@ public class TeacherDAO implements UserDAO<Teacher> {
             "SELECT TEACHERID, EMAIL, USERNAME, FIRSTNAME, LASTNAME " +
             "FROM TEACHERS                                          " +
             "WHERE TEACHERID = ?                                    ";
-        
-        return jdbcTemplate.queryForObject(sql, new TeacherMapper(), Id);
+       
+        try {
+            return jdbcTemplate.queryForObject(sql, new TeacherMapper(), Id);
+        } catch (EmptyResultDataAccessException exception) {
+            logger.error("Could not get Student object with ID: " + Id +
+                         "Exception occurred: " + exception);
+            return null;
+        }
     }
     
     @Override
@@ -40,15 +59,24 @@ public class TeacherDAO implements UserDAO<Teacher> {
             "INSERT INTO TEACHERS                              " +
             "(FIRSTNAME, LASTNAME, USERNAME, EMAIL, TEACHERID) " +
             "VALUES (?, ?, ?, ?, ?)                            ";
-        jdbcTemplate.update(
-            sql,
-            teacher.getFirstName(),
-            teacher.getLastName(),
-            teacher.getUserName(),
-            teacher.getEmail(),
-            teacher.getId()
-        );
-        return teacher;
+        
+        try {
+            jdbcTemplate.update(
+                sql,
+                teacher.getFirstName(),
+                teacher.getLastName(),
+                teacher.getUserName(),
+                teacher.getEmail(),
+                teacher.getId()
+            );
+            return teacher;
+        } catch (DataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Teachers addUser method " +
+                "Here is the exception:                             " +
+                exception);
+            return null;
+        }
     }
     
     @Override
@@ -58,14 +86,20 @@ public class TeacherDAO implements UserDAO<Teacher> {
             "FIRSTNAME = ?, LASTNAME = ?, USERNAME = ?, EMAIL = ? " +
             "WHERE TEACHERID = ?                                  ";
     
-        jdbcTemplate.update(
-            sql,
-            teacher.getFirstName(),
-            teacher.getLastName(),
-            teacher.getUserName(),
-            teacher.getEmail(),
-            id
-        );
+        try {
+            jdbcTemplate.update(
+                sql,
+                teacher.getFirstName(),
+                teacher.getLastName(),
+                teacher.getUserName(),
+                teacher.getEmail(),
+                id);
+        } catch (DataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Teachers updateUser method " +
+                "Here is the exception:                                " +
+                exception);
+        }
     }
     
     @Override
@@ -74,7 +108,14 @@ public class TeacherDAO implements UserDAO<Teacher> {
             "DELETE FROM        " +
             "TEACHERS           " +
             "WHERE TEACHERID = ?";
-        
-        jdbcTemplate.update(sql, Id);
+    
+        try {
+            jdbcTemplate.update(sql, Id);
+        } catch (DataAccessException exception) {
+            logger.error(
+                "DataBase Error occurred in Teachers deleteUser method " +
+                "Here is the exception:                                " +
+                exception);
+        }
     }
 }
