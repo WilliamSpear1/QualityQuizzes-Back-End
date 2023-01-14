@@ -9,19 +9,6 @@ public class Student extends ApplicationUser {
         super();
     }
     
-    public Student (
-      String studentFirstName,
-      String studentLastName,
-      String studentUserName,
-      String studentEmail
-    ) {
-        super(
-          studentFirstName,
-          studentLastName,
-          studentUserName,
-          studentEmail
-        );
-    }
     
     public Student (
       String firstName,
@@ -39,6 +26,19 @@ public class Student extends ApplicationUser {
         );
     }
     
+    public Student (
+        String firstName,
+        String lastName,
+        String userName,
+        String email
+    ) {
+        super(
+            firstName,
+            lastName,
+            userName,
+            email
+        );
+    }
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
     public boolean getStatus () {return isTeacher;}
 }
