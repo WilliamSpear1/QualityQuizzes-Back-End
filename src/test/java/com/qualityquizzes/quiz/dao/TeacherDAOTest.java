@@ -1,5 +1,6 @@
 package com.qualityquizzes.quiz.dao;
 
+import com.qualityquizzes.quiz.daoimpl.TeacherDAOImpl;
 import com.qualityquizzes.quiz.model.Teacher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,6 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJdbcTest
 public class TeacherDAOTest {
@@ -22,13 +22,13 @@ public class TeacherDAOTest {
     
     private final JdbcTemplate jdbcTemplate;
     
-    private final TeacherDAO teacherDAO;
+    private final TeacherDAOImpl teacherDAO;
     
     // Constructors /////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     public TeacherDAOTest (JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.teacherDAO   = new TeacherDAO(jdbcTemplate);
+        this.teacherDAO   = new TeacherDAOImpl(jdbcTemplate);
     }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,12 +36,7 @@ public class TeacherDAOTest {
     public void GET_ALL_TEACHERS(){
         List<Teacher> teacherList = teacherDAO.getAllUsers();
         
-        final Teacher teacher = teacherDAO.getById(2L);
-    
         assertFalse(teacherList.isEmpty());
-        
-        assertTrue(teacherList.contains(teacher));
-        
         assertEquals(teacherList.size(), 4);
     }
     

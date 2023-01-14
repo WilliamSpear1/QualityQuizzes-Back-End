@@ -1,5 +1,6 @@
-package com.qualityquizzes.quiz.dao;
+package com.qualityquizzes.quiz.daoimpl;
 
+import com.qualityquizzes.quiz.dao.UserDAO;
 import com.qualityquizzes.quiz.mapper.TeacherMapper;
 import com.qualityquizzes.quiz.model.Teacher;
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class TeacherDAO implements UserDAO<Teacher> {
+public class TeacherDAOImpl implements UserDAO<Teacher> {
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
@@ -18,7 +19,7 @@ public class TeacherDAO implements UserDAO<Teacher> {
     private final JdbcTemplate jdbcTemplate;
     
     // Constructors ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public TeacherDAO (final JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
+    public TeacherDAOImpl(final JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override

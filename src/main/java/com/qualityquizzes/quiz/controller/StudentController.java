@@ -1,7 +1,7 @@
 package com.qualityquizzes.quiz.controller;
 
+import com.qualityquizzes.quiz.daoimpl.StudentDAOImpl;
 import com.qualityquizzes.quiz.model.Student;
-import com.qualityquizzes.quiz.dao.StudentDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -23,9 +23,9 @@ public class StudentController {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
-    private final StudentDAO studentDAO;
+    private final StudentDAOImpl studentDAO;
    
-    public StudentController (final StudentDAO studentDAO) { this.studentDAO = studentDAO; }
+    public StudentController (final StudentDAOImpl studentDAO) { this.studentDAO = studentDAO; }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @PostMapping("/students")

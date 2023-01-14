@@ -1,8 +1,8 @@
 package com.qualityquizzes.quiz.controller;
 
-import com.qualityquizzes.quiz.dao.TeacherDAO;
-import com.qualityquizzes.quiz.model.Teacher;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qualityquizzes.quiz.daoimpl.TeacherDAOImpl;
+import com.qualityquizzes.quiz.model.Teacher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -31,7 +32,7 @@ public class TeacherControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @MockBean
-    private TeacherDAO teacherDAO;
+    private TeacherDAOImpl teacherDAO;
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
