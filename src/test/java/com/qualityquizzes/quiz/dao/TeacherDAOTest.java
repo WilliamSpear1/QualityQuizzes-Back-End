@@ -13,6 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJdbcTest
 public class TeacherDAOTest {
@@ -36,12 +37,12 @@ public class TeacherDAOTest {
         List<Teacher> teacherList = teacherDAO.getAllUsers();
         
         final Teacher teacher = teacherDAO.getById(2L);
-        
+    
         assertFalse(teacherList.isEmpty());
         
-        assertEquals(teacherList.size(), 4);
+        assertTrue(teacherList.contains(teacher));
         
-        assertThat(teacherList.contains(teacher));
+        assertEquals(teacherList.size(), 4);
     }
     
     @Test
@@ -105,12 +106,10 @@ public class TeacherDAOTest {
     
     @Test
     public void DELETE_TEACHER() {
-        final Teacher foundTeacher = teacherDAO.getById(2L);
-        
         teacherDAO.deleteUser(2L);
-        
+    
         try {
-            Teacher searchTeacher = teacherDAO.getById(2L);
+            teacherDAO.getById(2L);
         } catch (Exception e) {
             logger.error("Exception has been thrown: " + e.getMessage());
             assertEquals("Incorrect result size: expected 1, actual 0", e.getMessage());
