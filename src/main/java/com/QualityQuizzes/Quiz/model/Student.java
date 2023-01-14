@@ -9,7 +9,6 @@ public class Student extends ApplicationUser {
         super();
     }
     
-    
     public Student (
       String firstName,
       String lastName,
