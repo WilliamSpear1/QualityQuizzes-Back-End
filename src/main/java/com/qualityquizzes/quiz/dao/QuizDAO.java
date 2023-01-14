@@ -7,7 +7,7 @@ public interface QuizDAO {
  
  Quiz addQuiz (final Quiz quiz);
  
- void updateQuiz (final Quiz quiz);
+ void updateQuiz (final Quiz quiz, final long id);
  
  void deleteQuiz (final long Id);
 }
