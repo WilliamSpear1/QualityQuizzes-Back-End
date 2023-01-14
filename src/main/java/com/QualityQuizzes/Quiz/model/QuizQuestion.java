@@ -23,6 +23,18 @@ public class QuizQuestion {
         this.incorrectAnswer = incorrectAnswer;
     }
     
+    public QuizQuestion(
+        String question,
+        String correctAnswer,
+        String incorrectAnswer,
+        long id
+    ){
+        this.question        = question;
+        this.correctAnswer   = correctAnswer;
+        this.incorrectAnswer = incorrectAnswer;
+        this.id              = id;
+    }
+    
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
     public String getQuestion        () {return question;}
     
@@ -30,11 +42,11 @@ public class QuizQuestion {
     
     public String getIncorrectAnswer () {return incorrectAnswer;}
     
-    public void setQuestion (String question) {this.question = question;}
+    public void setQuestion (final String question)              {this.question = question;}
     
-    public void setCorrectAnswer(String correctAnswer) {this.correctAnswer = correctAnswer;}
+    public void setCorrectAnswer(final String correctAnswer)     {this.correctAnswer = correctAnswer;}
     
-    public void setIncorrectAnswer(String incorrectAnswer) {this.incorrectAnswer = incorrectAnswer;}
+    public void setIncorrectAnswer(final String incorrectAnswer) {this.incorrectAnswer = incorrectAnswer;}
     
-    public void setId(long id) {this.id = id;}
+    public void setId(final long id)                             {this.id = id;}
 }

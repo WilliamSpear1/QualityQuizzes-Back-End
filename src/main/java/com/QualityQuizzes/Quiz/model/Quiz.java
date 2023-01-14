@@ -42,7 +42,7 @@ public class Quiz {
         
         
         // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public boolean addQuizQuestion(QuizQuestion quizQuestion) {
+        public void addQuizQuestion(final QuizQuestion quizQuestion) {
                 if (quizQuestions.add(
                   new QuizQuestion(
                     quizQuestion.getQuestion(),
@@ -51,14 +51,10 @@ public class Quiz {
                   )
                 )){
                         quizSize++;
-                        return true;
                 }
-                return false;
         }
         
-        public void addQuizQuestions(Set<QuizQuestion> quizQuestions) {
-                quizQuestions.forEach(this::addQuizQuestion);
-        }
+        public void addQuizQuestions(Set<QuizQuestion> quizQuestions) { quizQuestions.forEach(this::addQuizQuestion); }
         
         // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
         public Set<QuizQuestion> getQuizQuestions() {
@@ -71,7 +67,9 @@ public class Quiz {
         
         public Long getId         () {return id;}
         
-        public void setQuizName (String quizName) { this.quizName = quizName; }
-        public void setQuizSize (int quizSize) { this.quizSize = quizSize; }
-        public void setId (long id) {this.id = id; }
+        public void setQuizName (final String quizName) { this.quizName = quizName; }
+        
+        public void setQuizSize (final int quizSize)    { this.quizSize = quizSize; }
+        
+        public void setId (final long id)               {this.id = id; }
 }

@@ -48,15 +48,15 @@ public abstract class ApplicationUser {
     }
     
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
-    public void setEmailName (String email)     {this.email      = email;}
+    public void setEmailName (final String email)     {this.email      = email;}
     
-    public void setFirstName (String firstName) {this.firstName  = firstName;}
+    public void setFirstName (final String firstName) {this.firstName  = firstName;}
     
-    public void setLastName  (String lastName)  {this.lastName   = lastName;}
+    public void setLastName  (final String lastName)  {this.lastName   = lastName;}
     
-    public void setUserName  (String userName)  {this.userName   = userName;}
+    public void setUserName  (final String userName)  {this.userName   = userName;}
     
-    public void setId        (long Id)          {this.id         = id;}
+    public void setId        (final long id)          {this.id         = id;}
     
     public String getEmail     () {return email;}
     
