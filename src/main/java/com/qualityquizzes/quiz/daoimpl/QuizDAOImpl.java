@@ -1,5 +1,6 @@
-package com.qualityquizzes.quiz.dao;
+package com.qualityquizzes.quiz.daoimpl;
 
+import com.qualityquizzes.quiz.dao.QuizDAO;
 import com.qualityquizzes.quiz.mapper.QuizMapper;
 import com.qualityquizzes.quiz.model.Quiz;
 import org.apache.logging.log4j.LogManager;
@@ -8,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class QuizDAOImpl implements QuizDAO{
+public class QuizDAOImpl implements QuizDAO {
     // Constants ///////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
@@ -25,9 +26,9 @@ public class QuizDAOImpl implements QuizDAO{
             "SELECT QUIZID,                " +
             "QUIZNAME, QUIZSIZE            " +
             "FROM QUIZZES WHERE QUIZID = ? ";
-   
+        
         try {
-            return jdbcTemplate.queryForObject(sql, new QuizMapper(),id);
+            return jdbcTemplate.queryForObject(sql, new QuizMapper(), id);
         } catch (EmptyResultDataAccessException exception) {
             logger.error("Could not get Quiz object with ID: " + id);
             logger.error(exception);
@@ -43,7 +44,10 @@ public class QuizDAOImpl implements QuizDAO{
             " values (?, ?, ?)            ";
        
         try {
-            jdbcTemplate.update( sql, quiz.getId(), quiz.getQuizName(), quiz.getQuizSize());
+            jdbcTemplate.update( sql,
+                quiz.getId(),
+                quiz.getQuizName(),
+                quiz.getQuizSize());
             return quiz;
         } catch (DataAccessException exception) {
             logger.error(
@@ -55,14 +59,18 @@ public class QuizDAOImpl implements QuizDAO{
     }
     
     @Override
-    public void updateQuiz(final Quiz quiz) {
+    public void updateQuiz(final Quiz quiz, final long id) {
         String sql =
             "UPDATE QUIZZES SET                     " +
-            "QUIZID = ?, QUIZNAME = ?, QUIZNAME = ? " +
+            "QUIZNAME = ?, QUIZSIZE = ? " +
             "WHERE QUIZID = ?                       ";
         
         try{
-            jdbcTemplate.update(sql, quiz.getId(), quiz.getQuizName(), quiz.getQuizSize());
+            jdbcTemplate.update(
+                sql,
+                quiz.getQuizName(),
+                quiz.getQuizSize(),
+                id);
         } catch (DataAccessException exception) {
             logger.error(
                 "DataBase Error occurred in QUIZDAO updateUser method " +
