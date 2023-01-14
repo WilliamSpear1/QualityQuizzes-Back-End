@@ -38,6 +38,7 @@ public class Student extends ApplicationUser {
             email
         );
     }
+    
     // Setters and Getters /////////////////////////////////////////////////////////////////////////////////////////////
     public boolean getStatus () {return isTeacher;}
 }
