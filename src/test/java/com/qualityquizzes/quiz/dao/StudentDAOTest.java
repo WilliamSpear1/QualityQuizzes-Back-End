@@ -50,9 +50,7 @@ public class StudentDAOTest {
           1L);
         
         logger.info("Here Creating tests.");
-        final Student checkStudent = studentDAO.addUser(student);
-        
-        System.out.println("checkStudent Id: " + checkStudent.getId());
+        studentDAO.addUser(student);
         
         final Student newStudent = studentDAO.getById(1L);
     
