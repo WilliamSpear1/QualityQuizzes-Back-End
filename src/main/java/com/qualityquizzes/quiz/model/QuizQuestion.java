@@ -16,6 +16,16 @@ public class QuizQuestion {
     public QuizQuestion(){}
     
     public QuizQuestion(
+        String question,
+        String correctAnswer,
+        String incorrectAnswer
+    ){
+        this.question        = question;
+        this.correctAnswer   = correctAnswer;
+        this.incorrectAnswer = incorrectAnswer;
+    }
+    
+    public QuizQuestion(
       String question,
       String correctAnswer,
       String incorrectAnswer,
@@ -60,5 +70,5 @@ public class QuizQuestion {
     
     public void setId(final long id)                             {this.id = id;}
     
-    public void setQuizId(final long id)                         {this.quizId = quizId;}
+    public void setQuizId(final long quizId)                         {this.quizId = quizId;}
 }
