@@ -3,8 +3,6 @@ package com.qualityquizzes.quiz.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qualityquizzes.quiz.daoimpl.QuizDAOImpl;
 import com.qualityquizzes.quiz.model.Quiz;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,8 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(QuizController.class)
 public class QuizControllerTest {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private static final Logger logger = LogManager.getLogger();
-    
     @Autowired
     private MockMvc mockMvc;
     
