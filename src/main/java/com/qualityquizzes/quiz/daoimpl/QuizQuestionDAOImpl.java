@@ -56,7 +56,7 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
     }
     
     @Override
-    public QuizQuestion addQuizQuestion(final QuizQuestion quizQuestion) {
+    public void addQuizQuestion(final QuizQuestion quizQuestion) {
         String sql =
             "INSERT INTO QUIZQUESTIONS                                           " +
             "(QUIZID, QUIZQUESTIONSID, QUESTION, CORRECTANSWER, INCORRECTANSWER) " +
@@ -71,13 +71,11 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
                 quizQuestion.getCorrectAnswer(),
                 quizQuestion.getIncorrectAnswer()
                 );
-            return quizQuestion;
         } catch (DataAccessException exception) {
             logger.error(
                 "DataBase Error occurred in Students addUser method " +
                 "Here is the exception:                             " +
                 exception);
-            return null;
         }
     }
     

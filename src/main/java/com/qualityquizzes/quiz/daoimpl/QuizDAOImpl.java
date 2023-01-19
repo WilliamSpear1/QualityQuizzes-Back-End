@@ -37,7 +37,7 @@ public class QuizDAOImpl implements QuizDAO {
     }
     
     @Override
-    public Quiz addQuiz(final Quiz quiz) {
+    public void addQuiz(final Quiz quiz) {
         String sql =
             "INSERT INTO QUIZZES          " +
             " (QUIZID, QUIZNAME, QUIZSIZE)" +
@@ -48,13 +48,11 @@ public class QuizDAOImpl implements QuizDAO {
                 quiz.getId(),
                 quiz.getQuizName(),
                 quiz.getQuizSize());
-            return quiz;
         } catch (DataAccessException exception) {
             logger.error(
                 "DataBase Error occurred in QuizDAO addUser method " +
                 "Here is the exception:                            " +
                 exception);
-            return null;
         }
     }
     

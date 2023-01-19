@@ -55,7 +55,7 @@ public class TeacherDAOImpl implements UserDAO<Teacher> {
     }
     
     @Override
-    public Teacher addUser (final Teacher teacher) {
+    public void addUser (final Teacher teacher) {
         String sql =
             "INSERT INTO TEACHERS                              " +
             "(FIRSTNAME, LASTNAME, USERNAME, EMAIL, TEACHERID) " +
@@ -70,13 +70,11 @@ public class TeacherDAOImpl implements UserDAO<Teacher> {
                 teacher.getEmail(),
                 teacher.getId()
             );
-            return teacher;
         } catch (DataAccessException exception) {
             logger.error(
                 "DataBase Error occurred in Teachers addUser method " +
                 "Here is the exception:                             " +
                 exception);
-            return null;
         }
     }
     

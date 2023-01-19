@@ -8,7 +8,7 @@ public interface UserDAO <Users> {
     
     Users getById (final long Id);
     
-    Users  addUser (final Users user);
+    void addUser (final Users user);
     
     void updateUser (final Users user, final long id);
     
