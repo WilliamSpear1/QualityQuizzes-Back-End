@@ -21,6 +21,7 @@ public class QuizDAOImpl implements QuizDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
     
+    // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public Quiz getQuizById (long id) {
         String sql =
