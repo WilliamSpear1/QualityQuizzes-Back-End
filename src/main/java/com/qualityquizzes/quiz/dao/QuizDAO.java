@@ -3,9 +3,10 @@ package com.qualityquizzes.quiz.dao;
 import com.qualityquizzes.quiz.model.Quiz;
 
 public interface QuizDAO {
+ // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
  Quiz getQuizById (final long id);
  
- Quiz addQuiz (final Quiz quiz);
+ void addQuiz (final Quiz quiz);
  
  void updateQuiz (final Quiz quiz, final long id);
  
