@@ -24,7 +24,8 @@ public class StudentController {
     private static final Logger logger = LogManager.getLogger();
     
     private final StudentDAOImpl studentDAO;
-   
+    
+    // Constructor  ///////////////////////////////////////////////////////////////////////////////////////////////////
     public StudentController (final StudentDAOImpl studentDAO) { this.studentDAO = studentDAO; }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
