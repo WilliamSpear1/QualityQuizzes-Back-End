@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 
 public class QuizMapper implements RowMapper<Quiz> {
+    // Method ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public Quiz mapRow(ResultSet rs, int rowNum) throws SQLException {
         Quiz quiz = new Quiz();
