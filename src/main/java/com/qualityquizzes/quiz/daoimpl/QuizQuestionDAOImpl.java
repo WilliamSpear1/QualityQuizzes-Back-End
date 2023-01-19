@@ -21,10 +21,11 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
     public QuizQuestionDAOImpl (final JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    
     @Override
     public List<QuizQuestion> getQuestionsByQuizId(final long quizId) {
         String sql =
-            "SELECT QUESTION, CORRECTANSWER, INCORRECTANSWER " +
+            "SELECT QUIZID, QUIZQUESTIONSID, QUESTION, CORRECTANSWER, INCORRECTANSWER " +
             "FROM QUIZQUESTIONS WHERE QUIZID = ?             ";
         
         try {
@@ -41,8 +42,9 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
     @Override
     public QuizQuestion getQuestionById(final long id) {
         String sql =
-            "SELECT QUESTION, CORRECTANSER, INCORRECTANSWER" +
-            "FROM QUIZQUESTION WHERE QUESTIONID = ?        ";
+            "SELECT QUIZID, QUIZQUESTIONSID, QUESTION, CORRECTANSWER, INCORRECTANSWER " +
+            "FROM QUIZQUESTIONS                                                       " +
+            "WHERE QUIZQUESTIONSID = ?                                                ";
         
         try {
             return jdbcTemplate.queryForObject(sql, new QuizQuestionMapper(), id);
@@ -56,17 +58,18 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
     @Override
     public QuizQuestion addQuizQuestion(final QuizQuestion quizQuestion) {
         String sql =
-            "INSERT INTO QUIZQUESTIONS" +
-                "(QUESTION, CORRECTANSWER, INCORRECTANSWER) " +
-                "values (?,?,?) WHERE QUIZID = ?";
+            "INSERT INTO QUIZQUESTIONS                                           " +
+            "(QUIZID, QUIZQUESTIONSID, QUESTION, CORRECTANSWER, INCORRECTANSWER) " +
+            "values (?,?,?,?,?)                                                  ";
         
         try {
             jdbcTemplate.update(
                 sql,
+                quizQuestion.getQuizId(),
+                quizQuestion.getId(),
                 quizQuestion.getQuestion(),
                 quizQuestion.getCorrectAnswer(),
-                quizQuestion.getIncorrectAnswer(),
-                quizQuestion.getQuizId()
+                quizQuestion.getIncorrectAnswer()
                 );
             return quizQuestion;
         } catch (DataAccessException exception) {
@@ -83,7 +86,7 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
         String sql =
             "UPDATE QUIZQUESTIONS SET                             " +
             "QUESTION = ?, CORRECTANSWER = ?, INCORRECTANSWER = ? " +
-            "WHERE QUESTIONID = ?                                 ";
+            "WHERE QUIZQUESTIONSID = ?                                 ";
         
         try {
             jdbcTemplate.update(
@@ -91,7 +94,7 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
                 quizQuestion.getQuestion(),
                 quizQuestion.getCorrectAnswer(),
                 quizQuestion.getIncorrectAnswer(),
-                quizQuestion.getId()
+                id
             );
         }catch (DataAccessException exception) {
             logger.error(
@@ -103,8 +106,9 @@ public class QuizQuestionDAOImpl implements QuizQuestionDAO {
     
     @Override
     public void deleteQuizQuestions(long id) {
-        String sql = "DELTE FROM QUIZQUESTIONS" +
-            "WHERE QUIZID = ?";
+        String sql =
+            "DELETE FROM QUIZQUESTIONS " +
+            "WHERE QUIZID = ?          ";
         
         try {
             jdbcTemplate.update(sql, id);
