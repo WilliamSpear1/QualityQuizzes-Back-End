@@ -28,7 +28,7 @@ public class QuizController {
     public QuizController (final QuizDAOImpl quizDAO) { this.quizDAO = quizDAO; }
     
     // Methods ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @PostMapping("/quiz")
+    @PostMapping("/quizzes")
     public ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz) {
         try{
             quizDAO.addQuiz(quiz);
@@ -43,7 +43,7 @@ public class QuizController {
         }
     }
     
-   @PutMapping("/quiz/{id}")
+   @PutMapping("/quizzes/{id}")
    public ResponseEntity<Quiz> updateQuiz(@PathVariable ("id") long id, @RequestBody Quiz quiz) {
        try{
            quizDAO.updateQuiz(quiz, id);
@@ -54,7 +54,7 @@ public class QuizController {
        }
    }
     
-    @DeleteMapping("/quiz/{id}")
+    @DeleteMapping("/quizzes/{id}")
     public ResponseEntity<HttpStatus> deleteQuiz(@PathVariable("id") long id) {
         try {
             quizDAO.deleteQuiz(id);

@@ -45,7 +45,7 @@ public class QuizControllerTest {
             10
         );
         
-        mockMvc.perform(post("/api/quiz")
+        mockMvc.perform(post("/api/quizzes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(quiz)))
             .andExpect(status().isCreated())
@@ -62,7 +62,7 @@ public class QuizControllerTest {
         
         doNothing().when(quizDAO).deleteQuiz(1L);
         
-        mockMvc.perform(delete("/api/quiz/{id}", 1L)
+        mockMvc.perform(delete("/api/quizzes/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(quiz)))
             .andExpect(status().isOk())
@@ -84,7 +84,7 @@ public class QuizControllerTest {
         
         when(quizDAO.getQuizById(quiz.getId())).thenReturn(quiz);
         
-        mockMvc.perform(put("/api/quiz/{id}", quiz.getId())
+        mockMvc.perform(put("/api/quizzes/{id}", quiz.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(quizUpdated)))
             .andExpect(status().isOk())
