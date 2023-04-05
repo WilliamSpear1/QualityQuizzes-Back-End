@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(QuizQuestionController.class)
-public class QuizQuestionControllerTest {
+class QuizQuestionControllerTest {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Autowired
     private MockMvc mockMvc;
