@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJdbcTest
-public class QuizQuestionDAOTest {
+class QuizQuestionDAOTest {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     

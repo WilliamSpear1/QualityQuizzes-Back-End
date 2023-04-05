@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJdbcTest
-public class QuizDAOTest {
+class QuizDAOTest {
     // Members ////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static final Logger logger = LogManager.getLogger();
     
